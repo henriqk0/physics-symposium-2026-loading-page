@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRF 2026 — Simpósio Regional de Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:   #ffffff;
+  --bg:      #f5f5f7;
+  --ink:     #1d1d1f;
+  --muted:   #6e6e73;
+  --rule:    #d2d2d7;
+  --accent:  #0071e3;
+  --accent-h:#0077ed;
+  --radius:  12px;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --sans:    'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --hero-sans: 'DM Sans', -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--sans); background: var(--white); color: var(--ink); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { width: 100%; max-width: 980px; margin-inline: auto; padding-inline: 22px; }
+
+/* NAV */
+.nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.85); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--rule); }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 52px; }
+.nav__brand { font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+.nav__brand span { color: var(--muted); font-weight: 400; }
+.nav__links { display: none; gap: 28px; list-style: none; }
+.nav__links a { font-size: 13px; color: var(--muted); transition: color .2s; }
+.nav__links a:hover { color: var(--ink); }
+.nav__cta { font-size: 13px; font-weight: 500; color: var(--accent); transition: color .2s; }
+.nav__cta:hover { color: var(--accent-h); }
+@media (min-width: 680px) { .nav__links { display: flex; } }
+
+/* HERO */
+.hero { padding: 88px 0 0; text-align: center; border-bottom: 1px solid var(--rule); }
+.hero__eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.hero__title { font-family: var(--hero-sans); font-size: clamp(2.6rem, 9vw, 5rem); font-weight: 300; line-height: 1.07; letter-spacing: -.03em; margin-bottom: 20px; color: var(--ink); }
+.hero__title em { font-style: normal; color: var(--ink); }
+.hero__sub { font-size: clamp(15px, 2.5vw, 18px); color: var(--muted); max-width: 520px; margin: 0 auto 36px; line-height: 1.65; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: 6px; border-radius: 980px; font-family: var(--sans); font-size: 15px; font-weight: 500; padding: 11px 24px; cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; border: none; text-decoration: none; }
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--primary:hover { background: var(--accent-h); box-shadow: 0 2px 12px rgba(0,113,227,.25); }
+.btn--ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--rule); }
+.btn--ghost:hover { border-color: var(--accent); }
+
+.hero__meta { display: flex; flex-wrap: wrap; margin-top: 56px; border-top: 1px solid var(--rule); }
+.hero__stat { flex: 1 1 120px; padding: 24px 16px; border-right: 1px solid var(--rule); text-align: center; }
+.hero__stat:last-child { border-right: none; }
+.hero__stat-num { font-family: var(--serif); font-size: 2.2rem; color: var(--ink); line-height: 1; display: block; margin-bottom: 4px; }
+.hero__stat-label { font-size: 12px; color: var(--muted); }
+
+/* SECTION */
+.section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.section--alt { background: var(--bg); }
+.label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.section__title { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 14px; }
+.section__lead { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.65; }
+
+/* SOBRE */
+.sobre__grid { display: grid; gap: 52px; margin-top: 52px; }
+@media (min-width: 760px) { .sobre__grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.sobre__text p { font-size: 16px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; }
+.feature-list { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; display: grid; gap: 1px; background: var(--rule); }
+.feature { background: var(--white); padding: 24px 28px; display: grid; grid-template-columns: 28px 1fr; gap: 16px; align-items: start; transition: background .15s; }
+.feature:hover { background: var(--bg); }
+.feature__icon { font-size: 18px; line-height: 1.5; }
+.feature__title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.feature__desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* PALESTRANTES */
+.speakers__grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
+@media (min-width: 580px) { .speakers__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 880px) { .speakers__grid { grid-template-columns: repeat(3, 1fr); } }
+.speaker-card { background: var(--white); padding: 32px 28px; transition: background .15s; }
+.speaker-card:hover { background: var(--bg); }
+.speaker__avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.speaker__name { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; margin-bottom: 3px; line-height: 1.3; }
+.speaker__affil { font-size: 11.5px; color: var(--accent); font-weight: 500; letter-spacing: .03em; margin-bottom: 12px; }
+.speaker__topic { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 980px; border: 1px solid var(--rule); color: var(--muted); }
+
+/* CRONOGRAMA */
+.tabs { display: flex; border: 1px solid var(--rule); border-radius: 980px; padding: 3px; width: fit-content; margin: 40px 0 0; background: var(--bg); }
+.tab-btn { background: none; border: none; cursor: pointer; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--muted); padding: 8px 18px; border-radius: 980px; transition: background .2s, color .2s; white-space: nowrap; }
+.tab-btn.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.day-panel { display: none; margin-top: 20px; }
+.day-panel.active { display: block; }
+.schedule-list { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.sched-item { display: grid; grid-template-columns: 96px 1fr; gap: 20px; padding: 20px 24px; border-bottom: 1px solid var(--rule); background: var(--white); align-items: start; transition: background .15s; }
+.sched-item:last-child { border-bottom: none; }
+.sched-item:hover { background: var(--bg); }
+.sched-time { font-size: 12px; font-weight: 500; color: var(--muted); padding-top: 3px; }
+.sched-title { font-size: 15px; font-weight: 500; margin-bottom: 3px; line-height: 1.4; }
+.sched-speaker { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.sched-tag { display: inline-block; font-size: 11px; padding: 3px 9px; border-radius: 980px; font-weight: 500; }
+.st-palestra  { background: #e8f1fb; color: #0062c4; }
+.st-workshop  { background: #f0f0f5; color: #444470; }
+.st-pausa     { background: #f5f5f7; color: var(--muted); }
+.st-mesa      { background: #fef6e4; color: #a07800; }
+.st-cerimonia { background: #edfaf1; color: #1a7a3e; }
+
+/* INSCRIÇÃO */
+.inscricao__grid { display: grid; gap: 32px; margin-top: 48px; }
+@media (min-width: 760px) { .inscricao__grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.plans { display: grid; gap: 12px; }
+.plan-card { border: 1.5px solid var(--rule); border-radius: var(--radius); padding: 24px; background: var(--white); transition: border-color .2s; position: relative; }
+.plan-card:hover { border-color: #b0b0b8; }
+.plan-card--featured { border-color: var(--accent); background: #f0f6ff; }
+.plan__badge { position: absolute; top: -11px; left: 20px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: .08em; padding: 3px 10px; border-radius: 980px; }
+.plan__name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.plan__for { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+.plan__price { font-family: var(--serif); font-size: 2rem; line-height: 1; margin-bottom: 14px; }
+.plan__price small { font-family: var(--sans); font-size: 13px; color: var(--muted); }
+.plan__features { list-style: none; display: grid; gap: 7px; }
+.plan__features li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: baseline; }
+.plan__features li::before { content: '·'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+.form-card { background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); padding: 32px 28px; }
+.form-card__title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 6px; }
+.form-card__sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .05em; color: var(--muted); margin-bottom: 6px; }
+.form-input, .form-select, .form-textarea { width: 100%; background: var(--white); border: 1.5px solid var(--rule); border-radius: 8px; padding: 11px 14px; font-family: var(--sans); font-size: 15px; color: var(--ink); transition: border-color .2s, box-shadow .2s; outline: none; appearance: none; -webkit-appearance: none; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,113,227,.12); }
+.form-input::placeholder { color: #b0b0b8; }
+.form-textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+.form-row { display: grid; gap: 12px; }
+@media (min-width: 440px) { .form-row { grid-template-columns: 1fr 1fr; } }
+.btn-submit { width: 100%; margin-top: 6px; background: var(--accent); color: #fff; border: none; border-radius: 980px; padding: 13px 24px; font-family: var(--sans); font-size: 15px; font-weight: 500; cursor: pointer; transition: background .2s, box-shadow .2s; }
+.btn-submit:hover { background: var(--accent-h); box-shadow: 0 2px 14px rgba(0,113,227,.25); }
+.form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+.form-success { display: none; text-align: center; padding: 48px 16px; }
+.form-success.show { display: block; }
+.form-success__icon { font-size: 2.5rem; margin-bottom: 14px; }
+.form-success__title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 10px; }
+.form-success__msg { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+/* HOSPEDAGEM */
+.hotels__grid { display: grid; gap: 12px; margin-top: 48px; }
+@media (min-width: 580px) { .hotels__grid { grid-template-columns: 1fr 1fr; } }
+.hotel-card { border: 1.5px solid var(--rule); border-radius: var(--radius); padding: 28px; background: var(--white); transition: border-color .2s, box-shadow .2s; }
+.hotel-card:hover { border-color: #b0b0b8; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+.hotel-card--featured { border-color: var(--accent); }
+.hotel__emoji { font-size: 1.8rem; margin-bottom: 14px; }
+.hotel__name { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 3px; }
+.hotel__dist { font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+.hotel__desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+.hotel__amenities { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.amenity-pill { font-size: 11px; color: var(--muted); border: 1px solid var(--rule); border-radius: 980px; padding: 3px 10px; background: var(--bg); }
+.hotel__price { font-size: 15px; font-weight: 600; }
+.hotel__price small { font-weight: 400; color: var(--muted); font-size: 12px; }
+
+.local-block { margin-top: 48px; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; display: grid; }
+@media (min-width: 700px) { .local-block { grid-template-columns: 1fr 1fr; } }
+.local-map { background: var(--bg); min-height: 220px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.local-text { padding: 36px 32px; background: var(--white); }
+.local__name { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 6px; margin-top: 10px; }
+.local__address { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+.local__desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.local__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+
+/* FOOTER */
+footer { background: var(--bg); border-top: 1px solid var(--rule); padding: 52px 0 36px; }
+.footer__grid { display: grid; gap: 36px; }
+@media (min-width: 640px) { .footer__grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer__brand { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.footer__tagline { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.footer__col h4 { font-size: 12px; font-weight: 600; letter-spacing: .05em; color: var(--muted); text-transform: uppercase; margin-bottom: 14px; }
+.footer__col ul { list-style: none; display: grid; gap: 8px; }
+.footer__col a { font-size: 13px; color: var(--muted); transition: color .2s; }
+.footer__col a:hover { color: var(--ink); }
+.footer__bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+
+/* FADE */
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* BOTTOM NAV (mobile) */
+.bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 300;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top: 1px solid var(--rule);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 4px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .02em;
+  transition: color .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.bottom-nav__item:hover,
+.bottom-nav__item.active { color: var(--accent); }
+.bottom-nav__icon { font-size: 18px; line-height: 1; }
+
+/* show bottom nav only on mobile */
+@media (min-width: 680px) { .bottom-nav { display: none; } }
+
+/* add bottom padding on mobile so content isn't hidden behind bottom nav */
+@media (max-width: 679px) {
+  body { padding-bottom: 62px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__inner">
+      <span class="nav__brand">SRF 2026 <span>· Simpósio Regional de Física</span></span>
+      <nav aria-label="Navegação principal">
+        <ul class="nav__links">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#palestrantes">Palestrantes</a></li>
+          <li><a href="#cronograma">Cronograma</a></li>
+          <li><a href="#hospedagem">Hospedagem</a></li>
+        </ul>
+      </nav>
+      <a href="#inscricao" class="nav__cta">Inscrever-se</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="hero__eyebrow">12–14 de agosto de 2026 · Vitória, ES</span>
+    <h1 class="hero__title">
+      Simpósio Regional<br><em>de Física</em>
+    </h1>
+    <p class="hero__sub">
+      Três dias de ciência, debate e colaboração entre pesquisadores, estudantes e professores de toda a região Sudeste.
+    </p>
+    <div class="hero__actions">
+      <a href="#inscricao" class="btn btn--primary">Inscrever-se agora</a>
+      <a href="#cronograma" class="btn btn--ghost">Ver programação</a>
+    </div>
+    <div class="hero__meta">
+      <div class="hero__stat">
+        <span class="hero__stat-num">18+</span>
+        <span class="hero__stat-label">Palestrantes</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">500</span>
+        <span class="hero__stat-label">Vagas</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">3</span>
+        <span class="hero__stat-label">Dias de evento</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">12</span>
+        <span class="hero__stat-label">Áreas temáticas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section" id="sobre">
+  <div class="wrap">
+    <div class="label fade-up">Sobre o Evento</div>
+    <h2 class="section__title fade-up">Onde a física<br>encontra pessoas</h2>
+    <p class="section__lead fade-up">O SRF é um dos principais encontros científicos do Sudeste brasileiro, realizado anualmente desde 2009 pela Sociedade Brasileira de Física em parceria com as universidades capixabas.</p>
+    <div class="sobre__grid">
+      <div class="sobre__text fade-up">
+        <p>A programação abrange física teórica, experimental e computacional, com espaço para apresentação de trabalhos originais, workshops práticos e mesas de debate sobre o futuro da área no Brasil.</p>
+        <p>Realizado no Centro de Convenções de Vitória, o evento reúne desde estudantes de graduação até pesquisadores seniores em um ambiente acolhedor e produtivo.</p>
+      </div>
+      <div class="feature-list fade-up">
+        <div class="feature">
+          <div class="feature__icon">🎤</div>
+          <div>
+            <div class="feature__title">Palestras Magistrais</div>
+            <div class="feature__desc">Conferências plenárias com pesquisadores de renome nacional e internacional.</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">📋</div>
+          <div>
+            <div class="feature__title">Sessões de Pôsteres</div>
+            <div class="feature__desc">Apresentação de trabalhos originais com premiação nas categorias graduação e pós-graduação.</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">🔧</div>
+          <div>
+            <div class="feature__title">Minicursos e Workshops</div>
+            <div class="feature__desc">Atividades práticas com vagas limitadas: ferramentas computacionais e metodologias.</div>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">💬</div>
+          <div>
+            <div class="feature__title">Mesa-Redonda</div>
+            <div class="feature__desc">Debate aberto sobre o futuro da física no Brasil e oportunidades de colaboração.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALESTRANTES -->
+<section class="section section--alt" id="palestrantes">
+  <div class="wrap">
+    <div class="label fade-up">Convidados</div>
+    <h2 class="section__title fade-up">Palestrantes</h2>
+    <p class="section__lead fade-up">Cientistas e pesquisadores de destaque apresentando o estado da arte em diferentes áreas da física.</p>
+    <div class="speakers__grid fade-up">
+      <div class="speaker-card">
+        <div class="speaker__avatar">👩‍🔬</div>
+        <div class="speaker__name">Profa. Dra. Ana Lúcia Matos</div>
+        <div class="speaker__affil">UNICAMP · Física Teórica</div>
+        <p class="speaker__topic">Matéria condensada quântica e transições de fase topológicas em sistemas de baixa dimensão.</p>
+        <span class="tag">Conferência de Abertura</span>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker__avatar">👨‍🔬</div>
+        <div class="speaker__name">Prof. Dr. Carlos Eduardo Ferreira</div>
+        <div class="speaker__affil">UFRJ · Física de Altas Energias</div>
+        <p class="speaker__topic">Física de partículas no LHC: resultados recentes e perspectivas para o Run 4 do detector ATLAS.</p>
+        <span class="tag">Palestra Plenária</span>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker__avatar">👩‍💻</div>
+        <div class="speaker__name">Dra. Marina Oshiro</div>
+        <div class="speaker__affil">INPE · Astrofísica Computacional</div>
+        <p class="speaker__topic">Simulações cosmológicas de grande escala e a formação de estruturas no universo jovem.</p>
+        <span class="tag">Palestra Plenária</span>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker__avatar">👨‍🏫</div>
+        <div class="speaker__name">Prof. Dr. Roberto Almada</div>
+        <div class="speaker__affil">UFES · Ótica e Fotônica</div>
+        <p class="speaker__topic">Fibras ópticas de cristal fotônico e aplicações em sensoriamento distribuído.</p>
+        <span class="tag">Workshop</span>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker__avatar">🧑‍🔬</div>
+        <div class="speaker__name">Dra. Júlia Santos Pereira</div>
+        <div class="speaker__affil">USP · Biofísica</div>
+        <p class="speaker__topic">Mecânica de moléculas únicas e as fronteiras entre física e biologia molecular.</p>
+        <span class="tag">Palestra Especial</span>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker__avatar">👨‍🎓</div>
+        <div class="speaker__name">Prof. Dr. Thiago Neves Lima</div>
+        <div class="speaker__affil">IFES · Ensino de Física</div>
+        <p class="speaker__topic">Metodologias ativas e evidências de aprendizagem significativa no ensino de física.</p>
+        <span class="tag">Mesa-Redonda</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section" id="cronograma">
+  <div class="wrap">
+    <div class="label fade-up">Programação</div>
+    <h2 class="section__title fade-up">Cronograma</h2>
+    <p class="section__lead fade-up">Três dias de ciência, aprendizado e conexões.</p>
+    <div class="fade-up">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="showDay(1,this)">Qua 12/08</button>
+        <button class="tab-btn" onclick="showDay(2,this)">Qui 13/08</button>
+        <button class="tab-btn" onclick="showDay(3,this)">Sex 14/08</button>
+      </div>
+      <div class="day-panel active" id="day-1">
+        <div class="schedule-list">
+          <div class="sched-item"><div class="sched-time">08:00–09:00</div><div><div class="sched-title">Credenciamento e Recepção</div><div class="sched-speaker">Equipe de Organização</div><span class="sched-tag st-pausa">Recepção</span></div></div>
+          <div class="sched-item"><div class="sched-time">09:00–10:00</div><div><div class="sched-title">Sessão Solene de Abertura</div><div class="sched-speaker">Reitor da UFES · Presidente SBF Regional</div><span class="sched-tag st-cerimonia">Cerimônia</span></div></div>
+          <div class="sched-item"><div class="sched-time">10:00–11:30</div><div><div class="sched-title">Matéria Condensada Quântica e Topologia</div><div class="sched-speaker">Profa. Dra. Ana Lúcia Matos — UNICAMP</div><span class="sched-tag st-palestra">Conferência de Abertura</span></div></div>
+          <div class="sched-item"><div class="sched-time">11:30–13:30</div><div><div class="sched-title">Almoço</div><div class="sched-speaker">—</div><span class="sched-tag st-pausa">Pausa</span></div></div>
+          <div class="sched-item"><div class="sched-time">13:30–15:00</div><div><div class="sched-title">Minicurso: Python para Físicos</div><div class="sched-speaker">Dr. Marcos Vieira — UFES · Vagas limitadas</div><span class="sched-tag st-workshop">Workshop</span></div></div>
+          <div class="sched-item"><div class="sched-time">15:00–17:00</div><div><div class="sched-title">Sessão de Pôsteres I — Graduação</div><div class="sched-speaker">Todos os participantes inscritos</div><span class="sched-tag st-palestra">Pôsteres</span></div></div>
+          <div class="sched-item"><div class="sched-time">19:00–21:00</div><div><div class="sched-title">Jantar de Confraternização</div><div class="sched-speaker">Restaurante do Centro de Eventos</div><span class="sched-tag st-pausa">Social</span></div></div>
+        </div>
+      </div>
+      <div class="day-panel" id="day-2">
+        <div class="schedule-list">
+          <div class="sched-item"><div class="sched-time">09:00–10:30</div><div><div class="sched-title">Física de Partículas no LHC: Run 4</div><div class="sched-speaker">Prof. Dr. Carlos Eduardo Ferreira — UFRJ</div><span class="sched-tag st-palestra">Palestra Plenária</span></div></div>
+          <div class="sched-item"><div class="sched-time">10:30–11:00</div><div><div class="sched-title">Coffee Break</div><div class="sched-speaker">—</div><span class="sched-tag st-pausa">Pausa</span></div></div>
+          <div class="sched-item"><div class="sched-time">11:00–12:30</div><div><div class="sched-title">Simulações Cosmológicas de Grande Escala</div><div class="sched-speaker">Dra. Marina Oshiro — INPE</div><span class="sched-tag st-palestra">Palestra Plenária</span></div></div>
+          <div class="sched-item"><div class="sched-time">12:30–14:00</div><div><div class="sched-title">Almoço</div><div class="sched-speaker">—</div><span class="sched-tag st-pausa">Pausa</span></div></div>
+          <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><div class="sched-title">Workshop: Fibras Ópticas e Sensoriamento</div><div class="sched-speaker">Prof. Dr. Roberto Almada — UFES</div><span class="sched-tag st-workshop">Workshop</span></div></div>
+          <div class="sched-item"><div class="sched-time">16:00–18:00</div><div><div class="sched-title">Sessão de Pôsteres II — Pós-Graduação</div><div class="sched-speaker">Todos os participantes inscritos</div><span class="sched-tag st-palestra">Pôsteres</span></div></div>
+          <div class="sched-item"><div class="sched-time">18:00–19:30</div><div><div class="sched-title">Mesa-Redonda: O Futuro da Física no Brasil</div><div class="sched-speaker">Mediação: Prof. Dr. Thiago Neves Lima — IFES</div><span class="sched-tag st-mesa">Mesa-Redonda</span></div></div>
+        </div>
+      </div>
+      <div class="day-panel" id="day-3">
+        <div class="schedule-list">
+          <div class="sched-item"><div class="sched-time">09:00–10:30</div><div><div class="sched-title">Biofísica: Mecânica de Moléculas Únicas</div><div class="sched-speaker">Dra. Júlia Santos Pereira — USP</div><span class="sched-tag st-palestra">Palestra Especial</span></div></div>
+          <div class="sched-item"><div class="sched-time">10:30–11:00</div><div><div class="sched-title">Coffee Break</div><div class="sched-speaker">—</div><span class="sched-tag st-pausa">Pausa</span></div></div>
+          <div class="sched-item"><div class="sched-time">11:00–12:00</div><div><div class="sched-title">Metodologias Ativas no Ensino de Física</div><div class="sched-speaker">Prof. Dr. Thiago Neves Lima — IFES</div><span class="sched-tag st-palestra">Palestra</span></div></div>
+          <div class="sched-item"><div class="sched-time">12:00–14:00</div><div><div class="sched-title">Almoço</div><div class="sched-speaker">—</div><span class="sched-tag st-pausa">Pausa</span></div></div>
+          <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><div class="sched-title">Sessões de Comunicações Orais</div><div class="sched-speaker">Participantes selecionados pelo comitê</div><span class="sched-tag st-palestra">Comunicações</span></div></div>
+          <div class="sched-item"><div class="sched-time">16:00–17:00</div><div><div class="sched-title">Premiação — Melhores Trabalhos</div><div class="sched-speaker">Comitê Científico SRF 2026</div><span class="sched-tag st-cerimonia">Premiação</span></div></div>
+          <div class="sched-item"><div class="sched-time">17:00–18:00</div><div><div class="sched-title">Sessão de Encerramento</div><div class="sched-speaker">Organização · Anúncio do SRF 2027</div><span class="sched-tag st-cerimonia">Encerramento</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIÇÃO -->
+<section class="section section--alt" id="inscricao">
+  <div class="wrap">
+    <div class="label fade-up">Participação</div>
+    <h2 class="section__title fade-up">Inscrição</h2>
+    <p class="section__lead fade-up">Vagas limitadas. Inscrições encerram em 31 de julho de 2026.</p>
+    <div class="inscricao__grid">
+      <div class="plans fade-up">
+        <div class="plan-card">
+          <div class="plan__name">Estudante de Graduação</div>
+          <div class="plan__for">Com comprovante de matrícula vigente</div>
+          <div class="plan__price">R$ 80 <small>/ pessoa</small></div>
+          <ul class="plan__features">
+            <li>Acesso a todas as palestras e plenárias</li>
+            <li>Participação em sessões de pôsteres</li>
+            <li>Material do evento e certificado</li>
+            <li>Coffee breaks incluídos</li>
+          </ul>
+        </div>
+        <div class="plan-card plan-card--featured">
+          <div class="plan__badge">Mais popular</div>
+          <div class="plan__name">Pós-Graduação / Pesquisador</div>
+          <div class="plan__for">Mestrandos, doutorandos e pesquisadores</div>
+          <div class="plan__price">R$ 180 <small>/ pessoa</small></div>
+          <ul class="plan__features">
+            <li>Acesso completo ao evento</li>
+            <li>Inscrição de trabalho (pôster ou oral)</li>
+            <li>Publicação nos anais do evento</li>
+            <li>Coffee breaks e jantar de confraternização</li>
+            <li>Acesso aos workshops</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan__name">Professor / Profissional</div>
+          <div class="plan__for">Docentes da educação básica e superior</div>
+          <div class="plan__price">R$ 220 <small>/ pessoa</small></div>
+          <ul class="plan__features">
+            <li>Acesso completo ao evento</li>
+            <li>Certificado com carga horária detalhada</li>
+            <li>Networking acadêmico exclusivo</li>
+            <li>Coffee breaks e jantar de confraternização</li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-card fade-up">
+        <div id="form-main">
+          <div class="form-card__title">Formulário de Inscrição</div>
+          <p class="form-card__sub">Preencha os dados para garantir sua vaga.</p>
+          <div class="form-group">
+            <label class="form-label">Nome completo *</label>
+            <input type="text" class="form-input" placeholder="Seu nome completo" id="f-nome">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">E-mail *</label>
+              <input type="email" class="form-input" placeholder="seu@email.com" id="f-email">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Telefone</label>
+              <input type="tel" class="form-input" placeholder="(27) 9 9000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Instituição *</label>
+            <input type="text" class="form-input" placeholder="Ex: UFES, IFES, USP…" id="f-inst">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Categoria *</label>
+              <select class="form-select" id="f-cat">
+                <option value="">Selecione…</option>
+                <option>Estudante de Graduação</option>
+                <option>Mestrando / Doutorando</option>
+                <option>Pesquisador / Docente</option>
+                <option>Professor da Ed. Básica</option>
+                <option>Profissional</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Área de interesse</label>
+              <select class="form-select">
+                <option value="">Selecione…</option>
+                <option>Física Teórica</option>
+                <option>Física Experimental</option>
+                <option>Física Computacional</option>
+                <option>Astrofísica / Cosmologia</option>
+                <option>Matéria Condensada</option>
+                <option>Biofísica</option>
+                <option>Ótica e Fotônica</option>
+                <option>Ensino de Física</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Submissão de trabalho</label>
+            <select class="form-select">
+              <option>Não — apenas participação</option>
+              <option>Sim — Pôster</option>
+              <option>Sim — Comunicação Oral</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Observações / Acessibilidade</label>
+            <textarea class="form-textarea" placeholder="Necessidades especiais ou observações…"></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitForm()">Confirmar inscrição</button>
+          <p class="form-note">Você receberá um e-mail com instruções de pagamento e confirmação da vaga.</p>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="form-success__icon">✅</div>
+          <div class="form-success__title">Inscrição recebida!</div>
+          <p class="form-success__msg">Obrigado pela inscrição no SRF 2026.<br>Enviamos as instruções de pagamento para o seu e-mail.<br><br>Nos vemos em Vitória em agosto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOSPEDAGEM -->
+<section class="section" id="hospedagem">
+  <div class="wrap">
+    <div class="label fade-up">Logística</div>
+    <h2 class="section__title fade-up">Hospedagem & Local</h2>
+    <p class="section__lead fade-up">Hotéis parceiros com tarifas especiais para participantes do SRF 2026.</p>
+    <div class="hotels__grid fade-up">
+      <div class="hotel-card hotel-card--featured">
+        <div class="hotel__emoji">🏨</div>
+        <div class="hotel__name">Bristol Vitória Hotel</div>
+        <div class="hotel__dist">1,2 km · ~15 min a pé</div>
+        <p class="hotel__desc">Quatro estrelas no coração de Vitória. Tarifas negociadas para participantes mediante código de reserva.</p>
+        <div class="hotel__amenities">
+          <span class="amenity-pill">Café da manhã</span>
+          <span class="amenity-pill">Wi-Fi</span>
+          <span class="amenity-pill">Estacionamento</span>
+        </div>
+        <div class="hotel__price">A partir de R$ 220 <small>/ noite · código SRF2026</small></div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel__emoji">🏩</div>
+        <div class="hotel__name">Ibis Vitória Centro</div>
+        <div class="hotel__dist">800 m · ~10 min a pé</div>
+        <p class="hotel__desc">Opção prática e confortável com excelente custo-benefício, ideal para estudantes e pesquisadores.</p>
+        <div class="hotel__amenities">
+          <span class="amenity-pill">Wi-Fi</span>
+          <span class="amenity-pill">Restaurante</span>
+          <span class="amenity-pill">Acessível</span>
+        </div>
+        <div class="hotel__price">A partir de R$ 140 <small>/ noite · código SRF2026-EC</small></div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel__emoji">🌊</div>
+        <div class="hotel__name">Praia Palace Hotel</div>
+        <div class="hotel__dist">3,0 km · ~8 min de carro</div>
+        <p class="hotel__desc">Para quem deseja unir o simpósio a uma estadia privilegiada à beira-mar, com vistas da Baía de Vitória.</p>
+        <div class="hotel__amenities">
+          <span class="amenity-pill">Vista para o mar</span>
+          <span class="amenity-pill">Piscina</span>
+          <span class="amenity-pill">Café da manhã</span>
+        </div>
+        <div class="hotel__price">A partir de R$ 380 <small>/ noite</small></div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel__emoji">🎓</div>
+        <div class="hotel__name">Alojamento UFES</div>
+        <div class="hotel__dist">2,5 km · Translado organizado</div>
+        <p class="hotel__desc">Vagas limitadas para estudantes participantes. Inscrição até 15 de julho via formulário específico.</p>
+        <div class="hotel__amenities">
+          <span class="amenity-pill">Translado incluso</span>
+          <span class="amenity-pill">Refeitório</span>
+          <span class="amenity-pill">Wi-Fi</span>
+        </div>
+        <div class="hotel__price">R$ 45 <small>/ noite · sujeito a disponibilidade</small></div>
+      </div>
+    </div>
+
+    <div class="local-block fade-up">
+      <div class="local-map">
+        <svg viewBox="0 0 340 220" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
+          <rect width="340" height="220" fill="#f5f5f7"/>
+          <line x1="76" y1="0" x2="76" y2="220" stroke="#d2d2d7" stroke-width="1"/>
+          <line x1="170" y1="0" x2="170" y2="220" stroke="#d2d2d7" stroke-width="1"/>
+          <line x1="264" y1="0" x2="264" y2="220" stroke="#d2d2d7" stroke-width="1"/>
+          <line x1="0" y1="74" x2="340" y2="74" stroke="#d2d2d7" stroke-width="1"/>
+          <line x1="0" y1="148" x2="340" y2="148" stroke="#d2d2d7" stroke-width="1"/>
+          <rect x="85" y="10" width="78" height="58" rx="4" fill="#e5e5ea"/>
+          <rect x="180" y="10" width="76" height="58" rx="4" fill="#e5e5ea"/>
+          <rect x="85" y="82" width="170" height="58" rx="4" fill="#ddeeff" stroke="#0071e3" stroke-width="1.5"/>
+          <text x="170" y="108" text-anchor="middle" font-size="11" font-family="-apple-system,sans-serif" fill="#0071e3" font-weight="600">Centro de Convenções</text>
+          <text x="170" y="126" text-anchor="middle" font-size="10" font-family="-apple-system,sans-serif" fill="#0071e3">Vitória – ES</text>
+          <rect x="85" y="158" width="78" height="52" rx="4" fill="#e5e5ea"/>
+          <rect x="182" y="158" width="74" height="52" rx="4" fill="#e5e5ea"/>
+          <rect x="278" y="82" width="52" height="128" rx="4" fill="#e5e5ea"/>
+          <circle cx="170" cy="111" r="20" fill="rgba(0,113,227,.12)">
+            <animate attributeName="r" values="14;24;14" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0;1" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="170" cy="111" r="6" fill="#0071e3"/>
+        </svg>
+      </div>
+      <div class="local-text">
+        <div class="label">Local do Evento</div>
+        <div class="local__name">Centro de Convenções de Vitória</div>
+        <div class="local__address">Av. Marechal Mascarenhas de Moraes, 150<br>Bento Ferreira · Vitória – ES · CEP 29050-765</div>
+        <p class="local__desc">Auditório principal para 800 pessoas, salas de workshop, restaurante, estacionamento e acessibilidade total.</p>
+        <div class="local__chips">
+          <span class="amenity-pill">🚌 Linhas 203 e 507</span>
+          <span class="amenity-pill">🚗 Estacionamento</span>
+          <span class="amenity-pill">♿ Acessível</span>
+          <span class="amenity-pill">📶 Wi-Fi gratuito</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn btn--ghost" style="width:fit-content; font-size:14px; padding:9px 20px;">Ver no Google Maps ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">SRF 2026 — Simpósio Regional de Física</div>
+        <p class="footer__tagline">Organizado pela Sociedade Brasileira de Física, Regional Sudeste, em parceria com a UFES e o IFES.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Evento</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#palestrantes">Palestrantes</a></li>
+          <li><a href="#cronograma">Cronograma</a></li>
+          <li><a href="#inscricao">Inscrição</a></li>
+          <li><a href="#hospedagem">Hospedagem</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:srf2026@ufes.br">srf2026@ufes.br</a></li>
+          <li><a href="tel:+552733359400">(27) 3335-9400</a></li>
+          <li><a href="#">Submissão de trabalhos</a></li>
+          <li><a href="#">Patrocínio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 SRF — Todos os direitos reservados.</span>
+      <span>SBF Regional Sudeste · UFES · IFES</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV (mobile only) -->
+<nav class="bottom-nav" aria-label="Navegação mobile">
+  <a href="#sobre" class="bottom-nav__item">
+    <span class="bottom-nav__icon">ℹ️</span>Sobre
+  </a>
+  <a href="#palestrantes" class="bottom-nav__item">
+    <span class="bottom-nav__icon">🎤</span>Palestrantes
+  </a>
+  <a href="#cronograma" class="bottom-nav__item">
+    <span class="bottom-nav__icon">📅</span>Cronograma
+  </a>
+  <a href="#hospedagem" class="bottom-nav__item">
+    <span class="bottom-nav__icon">🏨</span>Hospedagem
+  </a>
+</nav>
+
+<script>
+function showDay(n, btn) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('day-' + n).classList.add('active');
+  btn.classList.add('active');
+}
+function submitForm() {
+  const nome  = document.getElementById('f-nome').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const inst  = document.getElementById('f-inst').value.trim();
+  const cat   = document.getElementById('f-cat').value;
+  if (!nome || !email || !inst || !cat) { alert('Por favor, preencha os campos obrigatórios (*).'); return; }
+  document.getElementById('form-main').style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+}
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// Bottom nav active state
+const sections = ['sobre','palestrantes','cronograma','hospedagem'];
+const navItems = document.querySelectorAll('.bottom-nav__item');
+const sectionEls = sections.map(id => document.getElementById(id));
+window.addEventListener('scroll', () => {
+  let current = 0;
+  sectionEls.forEach((el, i) => { if (el && window.scrollY >= el.offsetTop - 120) current = i; });
+  navItems.forEach((item, i) => item.classList.toggle('active', i === current));
+}, { passive: true });
+</script>
+</body>
+</html>

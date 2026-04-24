@@ -1,0 +1,44 @@
+---
+interface Stat {
+  num: string;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { num: "12+", label: "Palestrantes" },
+  { num: "500", label: "Vagas" },
+  { num: "3", label: "Dias de evento" },
+  { num: "12", label: "Áreas temáticas" },
+];
+---
+
+<section class="pt-[88px] pb-0 text-center border-b border-border">
+  <div class="max-w-[980px] mx-auto px-[22px]">
+    <span class="inline-block text-[12px] font-semibold tracking-[.1em] uppercase text-brand mb-5">
+      12–14 de agosto de 2026 · Vitória, ES
+    </span>
+    <h1 class="font-['DM_Sans'] text-[clamp(2.6rem,9vw,5rem)] font-light leading-[1.07] tracking-[-.03em] mb-5 text-primary">
+      Simpósio Regional<br />de Física
+    </h1>
+    <p class="text-[clamp(15px,2.5vw,18px)] text-secondary max-w-[520px] mx-auto mb-9 leading-[1.65]">
+      Três dias de ciência, debate e colaboração entre pesquisadores, estudantes e professores de toda a região Sudeste.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mb-[56px]">
+      <a href="#inscricao" class="inline-flex items-center gap-1.5 rounded-[980px] text-[15px] font-medium px-6 py-[11px] bg-brand text-white hover:bg-brand-hover hover:shadow-[0_2px_12px_rgba(0,113,227,0.25)] transition-all duration-200">
+        Inscrever-se agora
+      </a>
+      <a href="#cronograma" class="inline-flex items-center gap-1.5 rounded-[980px] text-[15px] font-medium px-6 py-[11px] bg-transparent text-brand border border-border hover:border-brand transition-all duration-200">
+        Ver programação
+      </a>
+    </div>
+
+    <div class="flex flex-wrap border-t border-border">
+      {stats.map((stat, i) => (
+        <div class="flex-1 min-w-[120px] py-6 px-4 text-center border-right border-border last:border-r-0">
+          <span class="block font-['DM_Sans'] text-[2.2rem] text-primary leading-none mb-1">{stat.num}</span>
+          <span class="text-[12px] text-secondary">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

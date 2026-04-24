@@ -1,203 +1,37 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Sobre from '../components/Sobre.astro';
+import Palestrantes from '../components/Palestrantes.astro';
+import Cronograma from '../components/Cronograma.astro';
+import Inscricao from '../components/Inscricao.astro';
+import Hospedagem from '../components/Hospedagem.astro';
+import Footer from '../components/Footer.astro';
+import BottomNav from '../components/BottomNav.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{Astro.props.title || "Physics Symposium 2026"}</title>
-	</head>
-	<body class="bg-slate-50 text-slate-900 font-sans">
-		<!-- Navigation -->
-		<nav class="sticky top-0 z-50 bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow-lg">
-			<div class="flex items-center gap-2">
-				<div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-bold text-slate-900">Φ</div>
-				<span class="text-xl font-bold tracking-tight">PHYSICS<span class="text-amber-500">2026</span></span>
-			</div>
-			<div class="hidden md:flex gap-8 text-sm font-medium">
-				<a href="#about" class="hover:text-amber-400 transition-colors">About</a>
-				<a href="#speakers" class="hover:text-amber-400 transition-colors">Speakers</a>
-				<a href="#schedule" class="hover:text-amber-400 transition-colors">Schedule</a>
-				<a href="#register" class="bg-amber-500 text-slate-900 px-4 py-2 rounded-md hover:bg-amber-400 transition-colors">Register</a>
-			</div>
-			<div class="md:hidden text-2xl">☰</div>
-		</nav>
-
-		<!-- Hero Section -->
-		<header class="relative h-[80vh] flex items-center justify-center text-center text-white overflow-hidden bg-slate-900">
-			<div class="absolute inset-0 opacity-30">
-				<div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900"></div>
-				<!-- Abstract physics deco -->
-				<div class="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-				<div class="absolute bottom-20 right-10 w-96 h-96 bg-amber-500 rounded-full blur-3xl opacity-10 animate-pulse"></div>
-			</div>
-
-			<div class="relative z-10 px-6 max-w-4xl">
-				<p class="text-amber-500 font-mono text-sm uppercase tracking-widest mb-4">International Research Gathering</p>
-				<h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-					Unveiling the <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Quantum Frontier</span>
-				</h1>
-				<p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-					Join the world's leading physicists for a three-day exploration of theoretical and experimental breakthroughs in quantum gravity and particle physics.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<a href="#register" class="bg-amber-500 text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-amber-400 transition-all transform hover:scale-105">
-						Secure Your Seat
-					</a>
-					<a href="#about" class="border border-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-800 transition-all">
-						Learn More
-					</a>
-				</div>
-				<div class="mt-16 flex flex-col sm:flex-row justify-center gap-8 text-slate-400 font-mono text-sm">
-					<div class="flex items-center gap-2">
-						<span class="text-amber-500">📅</span> October 12-14, 2026
-					</div>
-					<div class="flex items-center gap-2">
-						<span class="text-amber-500">📍</span> Geneva, Switzerland
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<!-- About Section -->
-		<section id="about" class="py-24 px-6 max-w-6xl mx-auto">
-			<div class="grid md:grid-cols-2 gap-16 items-center">
-				<div>
-					<h2 class="text-3xl font-bold mb-6 text-slate-900">Exploring the <span class="text-amber-600">Fundamental</span> Laws</h2>
-					<p class="text-lg text-slate-600 mb-6 leading-relaxed">
-						The 2026 Physics Symposium brings together theoretical physicists, experimentalists, and mathematicians to discuss the most pressing questions in our field. From the scale of the Planck length to the expansion of the cosmic horizon.
-					</p>
-					<div class="grid grid-cols-2 gap-6">
-						<div class="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-							<div class="text-amber-500 text-2xl mb-2">⚛️</div>
-							<h3 class="font-bold mb-1">Quantum Field</h3>
-							<p class="text-sm text-slate-500">Deep dives into non-perturbative QFT.</p>
-						</div>
-						<div class="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-							<div class="text-amber-500 text-2xl mb-2">🌌</div>
-							<h3 class="font-bold mb-1">Cosmology</h3>
-							<p class="text-sm text-slate-500">Dark matter and early universe dynamics.</p>
-						</div>
-					</div>
-				</div>
-				<div class="bg-slate-200 aspect-square rounded-3xl overflow-hidden relative flex items-center justify-center text-slate-400 italic">
-					[Interactive Orbit Visualization Placeholder]
-				</div>
-			</div>
-		</section>
-
-		<!-- Speakers Section -->
-		<section id="speakers" class="py-24 px-6 bg-slate-100">
-			<div class="max-w-6xl mx-auto text-center mb-16">
-				<h2 class="text-4xl font-bold mb-4">Featured Speakers</h2>
-				<p class="text-slate-600">Pioneers leading the charge in contemporary physics</p>
-			</div>
-			<div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-				<!-- Speaker Card 1 -->
-				<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow text-center group">
-					<div class="w-32 h-32 bg-slate-300 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-amber-500 group-hover:ring-amber-400 transition-all">
-						<div class="w-full h-full flex items-center justify-center text-slate-500">Photo</div>
-					</div>
-					<h3 class="text-xl font-bold mb-1">Dr. Elena Vance</h3>
-					<p class="text-amber-600 text-sm font-medium mb-4">Stanford University</p>
-					<p class="text-slate-600 text-sm">Expert in Loop Quantum Gravity and Singularities.</p>
-				</div>
-				<!-- Speaker Card 2 -->
-				<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow text-center group">
-					<div class="w-32 h-32 bg-slate-300 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-amber-500 group-hover:ring-amber-400 transition-all">
-						<div class="w-full h-full flex items-center justify-center text-slate-500">Photo</div>
-					</div>
-					<h3 class="text-xl font-bold mb-1">Prof. Julian Thorne</h3>
-					<p class="text-amber-600 text-sm font-medium mb-4">CERN / EPFL</p>
-					<p class="text-slate-600 text-sm">Leading the Higgs-Boson precision measurement effort.</p>
-				</div>
-				<!-- Speaker Card 3 -->
-				<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow text-center group">
-					<div class="w-32 h-32 bg-slate-300 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-amber-500 group-hover:ring-amber-400 transition-all">
-						<div class="w-full h-full flex items-center justify-center text-slate-500">Photo</div>
-					</div>
-					<h3 class="text-xl font-bold mb-1">Dr. Sarah Chen</h3>
-					<p class="text-amber-600 text-sm font-medium mb-4">MIT</p>
-					<p class="text-slate-600 text-sm">Specializing in Topological Insulators and Condensed Matter.</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- Schedule Section -->
-		<section id="schedule" class="py-24 px-6 max-w-4xl mx-auto">
-			<div class="text-center mb-16">
-				<h2 class="text-4xl font-bold mb-4">Event Schedule</h2>
-				<p class="text-slate-600">Three days of immersive intellectual exploration</p>
-			</div>
-			<div class="space-y-8">
-				<!-- Day 1 -->
-				<div class="flex gap-6 p-6 bg-white rounded-2xl border-l-4 border-amber-500 shadow-sm">
-					<div class="text-slate-400 font-mono font-bold whitespace-nowrap">Day 01<br/>Oct 12</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Opening Keynotes: The State of the Universe</h3>
-						<p class="text-slate-600 mb-4">General assembly and introductory lectures on the current state of theoretical physics.</p>
-						<div class="flex gap-4 text-xs font-bold text-slate-400 uppercase">
-							<span>09:00 AM - 12:00 PM</span>
-							<span>Main Hall</span>
-						</div>
-					</div>
-				</div>
-				<!-- Day 2 -->
-				<div class="flex gap-6 p-6 bg-white rounded-2xl border-l-4 border-amber-500 shadow-sm">
-					<div class="text-slate-400 font-mono font-bold whitespace-nowrap">Day 02<br/>Oct 13</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Quantum Gravity & Space-Time</h3>
-						<p class="text-slate-600 mb-4">Breakout sessions focusing on the unification of GR and QM.</p>
-						<div class="flex gap-4 text-xs font-bold text-slate-400 uppercase">
-							<span>10:00 AM - 05:00 PM</span>
-							<span> breakout rooms A-C</span>
-						</div>
-					</div>
-				</div>
-				<!-- Day 3 -->
-				<div class="flex gap-6 p-6 bg-white rounded-2xl border-l-4 border-amber-500 shadow-sm">
-					<div class="text-slate-400 font-mono font-bold whitespace-nowrap">Day 03<br/>Oct 14</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Experimental Frontiers & Closing</h3>
-						<p class="text-slate-600 mb-4">Presenting new data from the Large Hadron Collider and future observatory plans.</p>
-						<div class="flex gap-4 text-xs font-bold text-slate-400 uppercase">
-							<span>09:00 AM - 03:00 PM</span>
-							<span>Main Hall</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Registration Footer-cta -->
-		<section id="register" class="py-24 px-6 bg-slate-900 text-white text-center">
-			<div class="max-w-3xl mx-auto">
-				<h2 class="text-4xl font-bold mb-6">Ready to join the conversation?</h2>
-				<p class="text-slate-400 mb-10 text-lg">Limited seats available for early bird registration. Secure your place among the world's leading physicists.</p>
-				<form class="flex flex-col sm:flex-row gap-4 justify-center">
-					<input type="email" placeholder="Enter your academic email" class="px-6 py-4 rounded-full bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 w-full sm:w-80" required />
-					<button type="submit" class="bg-amber-500 text-slate-900 px-10 py-4 rounded-full font-bold hover:bg-amber-400 transition-all">Register Now</button>
-				</form>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer class="py-12 px-6 bg-slate-950 text-slate-500 text-sm">
-			<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-				<div class="flex items-center gap-2 opacity-50">
-					<div class="w-6 h-6 bg-slate-700 rounded-full flex items-center justify-center text-white text-xs font-bold">Φ</div>
-					<span class="font-bold tracking-tight">PHYSICS 2026</span>
-				</div>
-				<div class="flex gap-6">
-					<a href="#" class="hover:text-white transition-colors">Twitter</a>
-					<a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-					<a href="#" class="hover:text-white transition-colors">Academic Archive</a>
-				</div>
-				<p>&copy; 2026 Physics Symposium Committee. All rights reserved.</p>
-			</div>
-		</footer>
-	</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>SRF 2026 — Simpósio Regional de Física</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" />
+  </head>
+  <body class="font-sans bg-white text-primary antialiased">
+    <Nav />
+    <main>
+      <Hero />
+      <Sobre />
+      <Palestrantes />
+      <Cronograma />
+      <Inscricao />
+      <Hospedagem />
+    </main>
+    <Footer />
+    <BottomNav />
+  </body>
 </html>

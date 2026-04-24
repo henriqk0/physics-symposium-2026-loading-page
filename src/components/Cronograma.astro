@@ -1,0 +1,118 @@
+---
+interface ScheduleItem {
+  time: string;
+  title: string;
+  speaker: string;
+  tag: string;
+  tagClass: string;
+}
+
+interface Day {
+  date: string;
+  items: ScheduleItem[];
+}
+
+const days: Day[] = [
+  {
+    date: "Qua 12/08",
+    items: [
+      { time: "08:00–09:00", title: "Credenciamento e Recepção", speaker: "Equipe de Organização", tag: "Recepção", tagClass: "bg-surface text-secondary" },
+      { time: "09:00–10:00", title: "Sessão Solene de Abertura", speaker: "Reitor da UFES · Presidente SBF Regional", tag: "Cerimônia", tagClass: "bg-tag-green-bg text-tag-green-text" },
+      { time: "10:00–11:30", title: "Matéria Condensada Quântica e Topologia", speaker: "Profa. Dra. Ana Lúcia Matos — UNICAMP", tag: "Conferência de Abertura", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "11:30–13:30", title: "Almoço", speaker: "—", tag: "Pausa", tagClass: "bg-surface text-secondary" },
+      { time: "13:30–15:00", title: "Minicurso: Python para Físicos", speaker: "Dr. Marcos Vieira — UFES · Vagas limitadas", tag: "Workshop", tagClass: "bg-tag-purple-bg text-tag-purple-text" },
+      { time: "15:00–17:00", title: "Sessão de Pôsteres I — Graduação", speaker: "Todos os participantes inscritos", tag: "Pôsteres", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "19:00–21:00", title: "Jantar de Confraternização", speaker: "Restaurante do Centro de Eventos", tag: "Social", tagClass: "bg-surface text-secondary" },
+    ],
+  },
+  {
+    date: "Qui 13/08",
+    items: [
+      { time: "09:00–10:30", title: "Física de Partículas no LHC: Run 4", speaker: "Prof. Dr. Carlos Eduardo Ferreira — UFRJ", tag: "Palestra Plenária", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "10:30–11:00", title: "Coffee Break", speaker: "—", tag: "Pausa", tagClass: "bg-surface text-secondary" },
+      { time: "11:00–12:30", title: "Simulações Cosmológicas de Grande Escala", speaker: "Dra. Marina Oshiro — INPE", tag: "Palestra Plenária", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "12:30–14:00", title: "Almoço", speaker: "—", tag: "Pausa", tagClass: "bg-surface text-secondary" },
+      { time: "14:00–16:00", title: "Workshop: Fibras Ópticas e Sensoriamento", speaker: "Prof. Dr. Roberto Almada — UFES", tag: "Workshop", tagClass: "bg-tag-purple-bg text-tag-purple-text" },
+      { time: "16:00–18:00", title: "Sessão de Pôsteres II — Pós-Graduação", speaker: "Todos os participantes inscritos", tag: "Pôsteres", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "18:00–19:30", title: "Mesa-Redonda: O Futuro da Física no Brasil", speaker: "Mediação: Prof. Dr. Thiago Neves Lima — IFES", tag: "Mesa-Redonda", tagClass: "bg-tag-yellow-bg text-tag-yellow-text" },
+    ],
+  },
+  {
+    date: "Sex 14/08",
+    items: [
+      { time: "09:00–10:30", title: "Biofísica: Mecânica de Moléculas Únicas", speaker: "Dra. Júlia Santos Pereira — USP", tag: "Palestra Especial", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "10:30–11:00", title: "Coffee Break", speaker: "—", tag: "Pausa", tagClass: "bg-surface text-secondary" },
+      { time: "11:00–12:00", title: "Metodologias Ativas no Ensino de Física", speaker: "Prof. Dr. Thiago Neves Lima — IFES", tag: "Palestra", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "12:00–14:00", title: "Almoço", speaker: "—", tag: "Pausa", tagClass: "bg-surface text-secondary" },
+      { time: "14:00–16:00", title: "Sessões de Comunicações Orais", speaker: "Participantes selecionados pelo comitê", tag: "Comunicações", tagClass: "bg-tag-blue-bg text-tag-blue-text" },
+      { time: "16:00–17:00", title: "Premiação — Melhores Trabalhos", speaker: "Comitê Científico SRF 2026", tag: "Premiação", tagClass: "bg-tag-green-bg text-tag-green-text" },
+      { time: "17:00–18:00", title: "Sessão de Encerramento", speaker: "Organização · Anúncio do SRF 2027", tag: "Encerramento", tagClass: "bg-tag-green-bg text-tag-green-text" },
+    ],
+  },
+];
+---
+
+<section id="cronograma" class="py-20 border-b border-border">
+  <div class="max-w-[980px] mx-auto px-[22px]">
+    <span class="text-[11px] font-semibold tracking-[.1em] uppercase text-secondary block mb-[10px]">Programação</span>
+    <h2 class="font-['DM_Sans'] text-[clamp(2rem,5vw,3.2rem)] font-normal leading-[1.1] tracking-[-.02em] mb-3">Cronograma</h2>
+    <p class="text-[17px] text-secondary max-w-[560px] leading-[1.65] mb-10">
+      Três dias de ciência, aprendizado e conexões.
+    </p>
+
+    <div class="flex gap-[4px] border border-border rounded-[980px] p-[3px] w-fit mb-5 bg-surface">
+      {days.map((day, i) => (
+        <button
+          data-day={i + 1}
+          class="tab-btn text-[13px] font-medium text-secondary px-[18px] py-2 rounded-[980px] transition-all duration-200 hover:bg-white hover:text-primary"
+        >
+          {day.date}
+        </button>
+      ))}
+    </div>
+
+    {days.map((day, i) => (
+      <div class="day-panel hidden" id={`day-${i + 1}`}>
+        <div class="border border-border rounded-xl overflow-hidden">
+          {day.items.map((item) => (
+            <div class="grid md:grid-cols-[96px_1fr] gap-5 p-5 bg-white border-b border-border last:border-b-0 hover:bg-surface transition-colors duration-150">
+              <div class="text-[12px] font-medium text-secondary pt-0.5">{item.time}</div>
+              <div>
+                <div class="text-[15px] font-medium mb-0.5 leading-[1.4]">{item.title}</div>
+                <div class="text-[13px] text-secondary mb-2">{item.speaker}</div>
+                <span class={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-[980px] ${item.tagClass}`}>{item.tag}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.day-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const dayNum = tab.getAttribute('data-day');
+
+      if (!dayNum) return;
+
+      panels.forEach((p) => p.classList.add('hidden'));
+
+      tabs.forEach((t) => t.classList.remove('bg-white', 'text-primary', 'shadow'));
+
+      tab.classList.add('bg-white', 'text-primary', 'shadow');
+
+      const targetPanel = document.getElementById(`day-${dayNum}`);
+      targetPanel?.classList.remove('hidden');
+    });
+  });
+
+  // Activate first tab
+  if (tabs[0]) {
+    tabs[0].click();
+  }
+</script>

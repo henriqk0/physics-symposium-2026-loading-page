@@ -1,0 +1,35 @@
+---
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
+  { href: "#sobre", label: "Sobre" },
+  { href: "#palestrantes", label: "Palestrantes" },
+  { href: "#cronograma", label: "Cronograma" },
+  { href: "#hospedagem", label: "Hospedagem" },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-border">
+  <div class="max-w-[980px] mx-auto px-[22px]">
+    <div class="flex items-center justify-between h-[52px]">
+      <span class="text-[13px] font-semibold tracking-[.02em]">
+        <a href="#">
+          SRF 2026 <span class="text-secondary font-normal">· Simpósio Regional de Física</span>
+        </a>
+      </span>
+      <nav class="hidden md:flex items-center gap-7" aria-label="Navegação principal">
+        {navLinks.map((link) => (
+          <a href={link.href} class="text-[13px] text-secondary hover:text-primary transition-colors duration-200">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <a href="#inscricao" class="text-[13px] font-medium text-brand hover:text-brand-hover transition-colors duration-200">
+        Inscrever-se
+      </a>
+    </div>
+  </div>
+</header>
