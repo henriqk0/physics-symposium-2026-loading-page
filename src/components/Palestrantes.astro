@@ -1,49 +1,127 @@
 ---
-import { User } from "@lucide/astro";
+import Avatar from "./Avatar.astro"
 
 interface Speaker {
   name: string;
   affil: string;
   topic: string;
   tag: string;
+  lattesUrl: string;
+  imageRef: string;
 }
 
 const speakers: Speaker[] = [
   {
-    name: "Profa. Dra. Ana Lúcia Matos",
-    affil: "UNICAMP · Física Teórica",
-    topic: "Matéria condensada quântica e transições de fase topológicos em sistemas de baixa dimensão.",
-    tag: "Conferência de Abertura",
-  },
-  {
-    name: "Prof. Dr. Carlos Eduardo Ferreira",
-    affil: "UFRJ · Física de Altas Energias",
-    topic: "Física de partículas no LHC: resultados recentes e perspectivas para o Run 4 do detector ATLAS.",
-    tag: "Palestra Plenária",
-  },
-  {
-    name: "Dra. Marina Oshiro",
-    affil: "INPE · Astrofísica Computacional",
-    topic: "Simulações cosmológicas de grande escala e a formação de estruturas no universo jovem.",
-    tag: "Palestra Plenária",
-  },
-  {
-    name: "Prof. Dr. Roberto Almada",
-    affil: "UFES · Ótica e Fotônica",
-    topic: "Fibras ópticas de cristal fotônico e aplicações em sensoriamento distribuído.",
-    tag: "Workshop",
-  },
-  {
-    name: "Dra. Júlia Santos Pereira",
-    affil: "USP · Biofísica",
-    topic: "Mecânica de moléculas únicas e as fronteiras entre física e biologia molecular.",
+    name: "Antônio Varandas",
+    affil: "UC, Portugal · UFES",
+    topic: "Homenagem especial — contribuições para a física brasileira e portuguesa.",
     tag: "Palestra Especial",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4488311J4"
   },
   {
-    name: "Prof. Dr. Thiago Neves Lima",
-    affil: "IFES · Ensino de Física",
-    topic: "Metodologias ativas e evidências de aprendizagem significativa no ensino de física.",
-    tag: "Mesa-Redonda",
+    name: "Giuseppe Dito",
+    affil: "UB, França",
+    topic: "Quantização por deformação — ferramentas matemáticas para mecânica quântica.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/7145763051036121",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4368892A5"
+  },
+  {
+    name: "Marcelo Segatto",
+    affil: "UFES",
+    topic: "Computação Quântica — avanços e perspectivas para o Brasil.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/2379169013108798",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4723978Z8"
+  },
+  {
+    name: "Ronaldo Lobato",
+    affil: "CBPF",
+    topic: "Objetos compactos — estados finais da evolução estelar.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/6184225097118343",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4434028A3"
+  },
+  {
+    name: "Wiliam Ricaldi",
+    affil: "UFES",
+    topic: "Astrofísica e Cosmologia em ondas de rádio.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4731474T7"
+  },
+  {
+    name: "Ivã Gurgel",
+    affil: "USP",
+    topic: "Ciência e Diplomacia: a postura internacionalista de Niels Bohr e o papel nas origens do CERN.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/2315844649289135",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4737960H7"
+  },
+  {
+    name: "João Paulo Erthal",
+    affil: "UFES",
+    topic: "Prêmio Nobel de Física: potencialidades no ensino de Física.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/4049290999036716",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4777423Z6"
+  },
+  {
+    name: "Guilherme Lima",
+    affil: "UFES",
+    topic: "Estrutura Eletrônica — pesquisas em física da matéria condensada.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5847088789120872",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4550752E5"
+  },
+  {
+    name: "Marcos Gonçalves Menezes",
+    affil: "UFRJ",
+    topic: "Pesquisas em estrutura eletrônica e materiais.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5945425658332294",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4210227Y1"
+  },
+  {
+    name: "Jorge Luiz Gonzales", // ~ lattes
+    affil: "UFES",
+    topic: "Uma abordagem para computação neuromórfica usando materiais quânticos.",
+    tag: "Matéria Condensada",
+    lattesUrl: "", 
+    imageRef: ""
+  },
+  {
+    name: "Yutao Xing",
+    affil: "UFF",
+    topic: "Aplicações de microscopia eletrônica de alta resolução: da física fundamental à ciência dos materiais.",
+    tag: "Matéria Condensada",
+    lattesUrl: "http://lattes.cnpq.br/5494495784747171",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4133149A6"
+  },
+  {
+    name: "Humberto Belich",
+    affil: "UFES",
+    topic: "Transição de Fase e ruptura de Polímeros.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/3879935393431243",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4798155Z5"
+  },
+  {
+    name: "Eduardo Marino",
+    affil: "UFRJ",
+    topic: "Teoria para a Supercondutividade de Alta Temperatura em Cupratos.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/4256849386217726",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4783288H8"
+  },
+  {
+    name: "Jaziel Goulart Coelho",
+    affil: "UFES",
+    topic: "Palestra de Divulgação Científica.",
+    tag: "Divulgação Científica",
+    lattesUrl: "http://lattes.cnpq.br/0298932683600051",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4139643T0"
   },
 ];
 ---
@@ -60,17 +138,22 @@ const speakers: Speaker[] = [
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border border border-border rounded-xl overflow-hidden">
       {speakers.map((s) => (
-        <div class="bg-white p-8 hover:bg-surface transition-colors duration-150">
-          <div class="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-[20px] mb-4">
-            <User size={20} />
+        <a href={s.lattesUrl || '#'} target="_blank">
+          <div class="bg-white p-8 hover:bg-surface transition-colors duration-150 h-full">
+            <div class="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-[20px] mb-4">
+              <Avatar src={s.imageRef} size={47} alt="imagem-lattes"/>
+            </div>
+            <div class="font-['DM_Sans'] text-[1.05rem] font-normal leading-[1.3] mb-0.5">{s.name}</div>
+            <div class="text-[11.5px] text-brand font-medium tracking-[.03em] mb-3">{s.affil}</div>
+            <p class="text-[13.5px] text-secondary leading-[1.6] mb-3">{s.topic}</p>
+            <span class="inline-block text-[11px] font-medium px-2.5 py-1 rounded-[980px] border border-border text-secondary">
+              {s.tag}
+            </span>
           </div>
-          <div class="font-['DM_Sans'] text-[1.05rem] font-normal leading-[1.3] mb-0.5">{s.name}</div>
-          <div class="text-[11.5px] text-brand font-medium tracking-[.03em] mb-3">{s.affil}</div>
-          <p class="text-[13.5px] text-secondary leading-[1.6] mb-3">{s.topic}</p>
-          <span class="inline-block text-[11px] font-medium px-2.5 py-1 rounded-[980px] border border-border text-secondary">
-            {s.tag}
-          </span>
-        </div>
+        </a>
+      ))}
+      {[...Array((3 - (speakers.length % 3)) % 3)].map(() => (
+        <div class="bg-border min-h-full" />
       ))}
     </div>
   </div>
