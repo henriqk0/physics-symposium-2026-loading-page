@@ -1,0 +1,33 @@
+---
+const sponsors = [
+  { name: "IFES", abbr: "IF" },
+  { name: "UFES", abbr: "UF" },
+  { name: "CNPq", abbr: "CN" },
+  { name: "CAPES", abbr: "CP" },
+  { name: "FAPES", abbr: "FP" },
+  { name: "SBF", abbr: "SB" },
+];
+---
+
+<div class="bg-slate-50 border-t border-b border-slate-200 py-5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-slate-600 text-xs font-medium">Apoio:</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        {sponsors.map((sponsor) => (
+          <div key={sponsor.name} class="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-full">
+            <div class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
+              <span class="text-white text-[9px] font-bold">{sponsor.abbr}</span>
+            </div>
+            <span class="text-slate-700 text-xs">{sponsor.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

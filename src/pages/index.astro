@@ -1,37 +1,16 @@
 ---
-import '../styles/global.css';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Sobre from '../components/Sobre.astro';
-import Palestrantes from '../components/Palestrantes.astro';
-import Cronograma from '../components/Cronograma.astro';
-import Inscricao from '../components/Inscricao.astro';
-import Hospedagem from '../components/Hospedagem.astro';
-import Footer from '../components/Footer.astro';
-import BottomNav from '../components/BottomNav.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Location from "../components/Location.astro";
+import SponsorsSection from "../components/SponsorsSection.astro";
+import SponsorsBar from "../components/SponsorsBar.astro";
 ---
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>SRF 2026 — Simpósio Regional de Física</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" />
-  </head>
-  <body class="font-sans bg-white text-primary antialiased">
-    <Nav />
-    <main>
-      <Hero />
-      <Sobre />
-      <Palestrantes />
-      <Cronograma />
-      <Inscricao />
-      <Hospedagem />
-    </main>
-    <Footer />
-    <BottomNav />
-  </body>
-</html>
+<Layout title="SRFES 2026 – Simpósio Regional de Física do Espírito Santo">
+  <Hero />
+  <About />
+  <Location />
+  <SponsorsSection />
+  <SponsorsBar />
+</Layout>
