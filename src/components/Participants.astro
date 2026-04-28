@@ -1,54 +1,125 @@
 ---
-import { ExternalLink } from "@lucide/astro";
+interface Speaker {
+  name: string;
+  affil: string;
+  topic: string;
+  tag: string;
+  lattesUrl: string;
+  imageRef: string;
+}
 
-const speakers = [
+const speakers: Speaker[] = [
   {
-    id: 1,
-    name: "Prof. Dr. Carlos Eduardo Santos",
-    institution: "UFES",
-    area: "Física de Partículas",
-    talk: "Descobertas recentes no LHC e o futuro da física de altas energias",
-    image: "https://images.unsplash.com/photo-1601655781320-205e34c94eb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWxlJTIwcGh5c2ljaXN0JTIwcmVzZWFyY2hlciUyMHBvcnRyYWl0JTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3Njk2ODYxOXww&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Antônio Varandas",
+    affil: "UC, Portugal · UFES",
+    topic: "Homenagem especial — contribuições para a física brasileira e portuguesa.",
+    tag: "Palestra Especial",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4488311J4"
   },
   {
-    id: 2,
-    name: "Profa. Dra. Maria Fernanda Lima",
-    institution: "IFES",
-    area: "Astrofísica e Cosmologia",
-    talk: "Ondas gravitacionais: uma nova janela para o universo",
-    image: "https://images.unsplash.com/photo-1659353887272-703de19bec9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBzY2llbnRpc3QlMjByZXNlYXJjaGVyJTIwcG9ydHJhaXQlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzc2OTY4NjE5fDA&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Giuseppe Dito",
+    affil: "UB, França",
+    topic: "Quantização por deformação — ferramentas matemáticas para mecânica quântica.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/7145763051036121",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4368892A5"
   },
   {
-    id: 3,
-    name: "Prof. Dr. Rafael Oliveira",
-    institution: "USP",
-    area: "Física da Matéria Condensada",
-    talk: "Supercondutividade de alta temperatura: desafios e perspectivas",
-    image: "https://images.unsplash.com/photo-1758685734414-951a86561065?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWxlJTIwcHJvZmVzc29yJTIwYWNhZGVtaWMlMjBwb3J0cmFpdCUyMHNtaWxpbmd8ZW58MXx8fHwxNzc2OTY4NjIzfDA&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Marcelo Segatto",
+    affil: "UFES",
+    topic: "Computação Quântica — avanços e perspectivas para o Brasil.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/2379169013108798",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4723978Z8"
   },
   {
-    id: 4,
-    name: "Profa. Dra. Ana Paula Souza",
-    institution: "UNICAMP",
-    area: "Física Quântica",
-    talk: "Computação quântica: onde estamos e para onde vamos",
-    image: "https://images.unsplash.com/photo-1758685847967-c598c3b176b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBwcm9mZXNzb3IlMjBhY2FkZW1pYyUyMHBvcnRyYWl0JTIwc21pbGluZ3xlbnwxfHx8fDE3NzY5Njg2MjN8MA&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Ronaldo Lobato",
+    affil: "CBPF",
+    topic: "Objetos compactos — estados finais da evolução estelar.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/6184225097118343",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4434028A3"
   },
   {
-    id: 5,
-    name: "Prof. Dr. João Marcos Vieira",
-    institution: "UFMG",
-    area: "Física Computacional",
-    talk: "Simulações moleculares e suas aplicações em ciência de materiais",
-    image: "https://images.unsplash.com/photo-1773828977866-baed2942b424?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2llbnRpc3QlMjBwcm9mZXNzb3IlMjBzcGVha2luZyUyMGNvbmZlcmVuY2V8ZW58MXx8fHwxNzc2OTY4NjE1fDA&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Wiliam Ricaldi",
+    affil: "UFES",
+    topic: "Astrofísica e Cosmologia em ondas de rádio.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4731474T7"
   },
   {
-    id: 6,
-    name: "Profa. Dra. Beatriz Carvalho",
-    institution: "UNESP",
-    area: "Física Nuclear",
-    talk: "Aplicações da física nuclear na medicina e na indústria",
-    image: "https://images.unsplash.com/photo-1664273891579-22f28332f3c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzJTIwYnVpbGRpbmclMjBtb2Rlcm58ZW58MXx8fHwxNzc2OTY4NjEyfDA&ixlib=rb-4.1.0&q=80&w=400",
+    name: "Ivã Gurgel",
+    affil: "USP",
+    topic: "Ciência e Diplomacia: a postura internacionalista de Niels Bohr e o papel nas origens do CERN.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/2315844649289135",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4737960H7"
+  },
+  {
+    name: "João Paulo Erthal",
+    affil: "UFES",
+    topic: "Prêmio Nobel de Física: potencialidades no ensino de Física.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/4049290999036716",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4777423Z6"
+  },
+  {
+    name: "Guilherme Lima",
+    affil: "UFES",
+    topic: "Estrutura Eletrônica — pesquisas em física da matéria condensada.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5847088789120872",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4550752E5"
+  },
+  {
+    name: "Marcos Gonçalves Menezes",
+    affil: "UFRJ",
+    topic: "Pesquisas em estrutura eletrônica e materiais.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5945425658332294",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4210227Y1"
+  },
+  {
+    name: "Jorge Luiz Gonzales", // ~ lattes
+    affil: "UFES",
+    topic: "Uma abordagem para computação neuromórfica usando materiais quânticos.",
+    tag: "Matéria Condensada",
+    lattesUrl: "", 
+    imageRef: ""
+  },
+  {
+    name: "Yutao Xing",
+    affil: "UFF",
+    topic: "Aplicações de microscopia eletrônica de alta resolução: da física fundamental à ciência dos materiais.",
+    tag: "Matéria Condensada",
+    lattesUrl: "http://lattes.cnpq.br/5494495784747171",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4133149A6"
+  },
+  {
+    name: "Humberto Belich",
+    affil: "UFES",
+    topic: "Transição de Fase e ruptura de Polímeros.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/3879935393431243",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4798155Z5"
+  },
+  {
+    name: "Eduardo Marino",
+    affil: "UFRJ",
+    topic: "Teoria para a Supercondutividade de Alta Temperatura em Cupratos.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/4256849386217726",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4783288H8"
+  },
+  {
+    name: "Jaziel Goulart Coelho",
+    affil: "UFES",
+    topic: "Palestra de Divulgação Científica.",
+    tag: "Divulgação Científica",
+    lattesUrl: "http://lattes.cnpq.br/0298932683600051",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4139643T0"
   },
 ];
 
@@ -60,6 +131,7 @@ const committeeMembers = [
   { name: "Prof. Dr. Fábio Nascimento", role: "Tesoureiro", institution: "IFES Serra" },
   { name: "Profa. Ma. Renata Pimentel", role: "Secretária Geral", institution: "IFES Serra" },
 ];
+
 ---
 
 <section id="palestrantes" class="bg-gradient-to-b from-slate-50 to-blue-50/30">
@@ -76,24 +148,24 @@ const committeeMembers = [
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
       {speakers.map((speaker) => (
         <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
-          <div class="relative h-48">
+          <div class="relative h-67">
             <img
-              src={speaker.image}
+              src={speaker.imageRef}
               alt={speaker.name}
-              class="w-full h-full object-cover object-top"
+              class="w-full h-full object-cover object-center"
             />
             <span class="absolute top-2 right-2 px-2 py-1 bg-white text-slate-700 text-xs rounded font-medium">
-              {speaker.institution}
+              {speaker.affil}
             </span>
           </div>
           <div class="p-4">
-            <p class="text-xs text-blue-600 mb-1">{speaker.area}</p>
+            <p class="text-xs text-blue-600 mb-1">{speaker.tag}</p>
             <h3 class="text-slate-900 font-semibold mb-2">
               {speaker.name}
             </h3>
             <div class="border-t border-slate-200 pt-2 mt-2">
               <p class="text-slate-600 text-sm leading-snug">
-                {speaker.talk}
+                {speaker.topic}
               </p>
             </div>
           </div>

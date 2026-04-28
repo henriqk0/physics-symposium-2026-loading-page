@@ -1,18 +1,13 @@
 ---
 const sponsors = [
-  { name: "IFES", type: "Instituição Organizadora", color: "bg-blue-600" },
-  { name: "UFES", type: "Parceiro Institucional", color: "bg-blue-500" },
-  { name: "Sociedade Brasileira de Física", type: "Apoio", color: "bg-blue-400" },
-  { name: "CNPq", type: "Financiamento", color: "bg-green-600" },
-  { name: "CAPES", type: "Financiamento", color: "bg-green-500" },
-  { name: "FAPES", type: "Financiamento", color: "bg-green-400" },
-  { name: "Governo do ES", type: "Apoio", color: "bg-slate-600" },
-  { name: "SBI", type: "Parceiro", color: "bg-violet-600" },
-  { name: "SBF", type: "Parceiro", color: "bg-amber-600" },
+  { name: "Sociedade Brasileira de Física", type: "Apoio", color: "bg-blue-400",link: "/Logo-SBF60-small_1.png" },
+  { name: "IFES", type: "Instituição Organizadora", color: "bg-blue-600", link: "/serra-vertical-cor.png"},
+  { name: "UFES", type: "Parceiro Institucional", color: "bg-blue-500", link: "/Logo_Ufes.png" },
+  { name: "Governo do ES", type: "Apoio", color: "bg-slate-600", link: "/Brasao_Governo.png"},
 ];
 ---
 
-<section class="py-20 bg-white">
+<section class="py-20 bg-slate-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
       <h2 class="text-slate-900 text-3xl font-bold mb-2">
@@ -23,29 +18,13 @@ const sponsors = [
       </p>
     </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
       {sponsors.map((sponsor) => (
-        <div class="flex flex-col items-center gap-3 p-6 bg-white border border-slate-200 rounded-xl hover:border-slate-300 hover:shadow-md transition-all">
-          <div class={`w-12 h-12 rounded-full ${sponsor.color} flex items-center justify-center`}>
-            <span class="text-white font-bold text-sm">
-              {sponsor.name.split(" ").slice(0, 2).map(w => w[0]).join("")}
-            </span>
-          </div>
-          <div class="text-center">
-            <p class="text-slate-900 font-medium text-sm">{sponsor.name}</p>
-            <p class="text-slate-500 text-xs">{sponsor.type}</p>
-          </div>
+        <div class="flex flex-col items-center gap-3 p-6">
+          <img src={sponsor.link} alt="">
         </div>
       ))}
     </div>
 
-    <div class="mt-12 text-center">
-      <p class="text-slate-500 text-sm">
-        Deseja patrocinar o SRFES 2026?{" "}
-        <a href="mailto:srfes2026@ifes.edu.br" class="text-blue-600 font-medium hover:underline">
-          Entre em contato conosco
-        </a>
-      </p>
-    </div>
   </div>
 </section>
