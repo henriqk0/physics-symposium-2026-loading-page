@@ -1,0 +1,202 @@
+---
+interface Speaker {
+  name: string;
+  affil: string;
+  topic: string;
+  tag: string;
+  lattesUrl: string;
+  imageRef: string;
+}
+
+const speakers: Speaker[] = [
+  {
+    name: "Antônio Varandas",
+    affil: "UC, Portugal · UFES",
+    topic: "Homenagem especial — contribuições para a física brasileira e portuguesa.",
+    tag: "Palestra Especial",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4488311J4"
+  },
+  {
+    name: "Giuseppe Dito",
+    affil: "UB, França",
+    topic: "Quantização por deformação — ferramentas matemáticas para mecânica quântica.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/7145763051036121",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4368892A5"
+  },
+  {
+    name: "Marcelo Segatto",
+    affil: "UFES",
+    topic: "Computação Quântica — avanços e perspectivas para o Brasil.",
+    tag: "Palestra Plenária",
+    lattesUrl: "http://lattes.cnpq.br/2379169013108798",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4723978Z8"
+  },
+  {
+    name: "Ronaldo Lobato",
+    affil: "CBPF",
+    topic: "Objetos compactos — estados finais da evolução estelar.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/6184225097118343",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4434028A3"
+  },
+  {
+    name: "Wiliam Ricaldi",
+    affil: "UFES",
+    topic: "Astrofísica e Cosmologia em ondas de rádio.",
+    tag: "Astrofísica",
+    lattesUrl: "http://lattes.cnpq.br/0081051823749824",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4731474T7"
+  },
+  {
+    name: "Ivã Gurgel",
+    affil: "USP",
+    topic: "Ciência e Diplomacia: a postura internacionalista de Niels Bohr e o papel nas origens do CERN.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/2315844649289135",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4737960H7"
+  },
+  {
+    name: "João Paulo Erthal",
+    affil: "UFES",
+    topic: "Prêmio Nobel de Física: potencialidades no ensino de Física.",
+    tag: "Ensino de Física",
+    lattesUrl: "http://lattes.cnpq.br/4049290999036716",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4777423Z6"
+  },
+  {
+    name: "Guilherme Lima",
+    affil: "UFES",
+    topic: "Estrutura Eletrônica — pesquisas em física da matéria condensada.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5847088789120872",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4550752E5"
+  },
+  {
+    name: "Marcos Gonçalves Menezes",
+    affil: "UFRJ",
+    topic: "Pesquisas em estrutura eletrônica e materiais.",
+    tag: "Estrutura Eletrônica",
+    lattesUrl: "http://lattes.cnpq.br/5945425658332294",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4210227Y1"
+  },
+  {
+    name: "Jorge Luiz Gonzales", // ~ lattes
+    affil: "UFES",
+    topic: "Uma abordagem para computação neuromórfica usando materiais quânticos.",
+    tag: "Matéria Condensada",
+    lattesUrl: "", 
+    imageRef: ""
+  },
+  {
+    name: "Yutao Xing",
+    affil: "UFF",
+    topic: "Aplicações de microscopia eletrônica de alta resolução: da física fundamental à ciência dos materiais.",
+    tag: "Matéria Condensada",
+    lattesUrl: "http://lattes.cnpq.br/5494495784747171",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4133149A6"
+  },
+  {
+    name: "Humberto Belich",
+    affil: "UFES",
+    topic: "Transição de Fase e ruptura de Polímeros.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/3879935393431243",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4798155Z5"
+  },
+  {
+    name: "Eduardo Marino",
+    affil: "UFRJ",
+    topic: "Teoria para a Supercondutividade de Alta Temperatura em Cupratos.",
+    tag: "Teoria Quântica de Campos",
+    lattesUrl: "http://lattes.cnpq.br/4256849386217726",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4783288H8"
+  },
+  {
+    name: "Jaziel Goulart Coelho",
+    affil: "UFES",
+    topic: "Palestra de Divulgação Científica.",
+    tag: "Divulgação Científica",
+    lattesUrl: "http://lattes.cnpq.br/0298932683600051",
+    imageRef: "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4139643T0"
+  },
+];
+
+const committeeMembers = [
+  { name: "Prof. Dr. Anderson Martins", role: "Presidente do Comitê", institution: "IFES Serra" },
+  { name: "Profa. Dra. Luísa Ferreira", role: "Coordenadora Científica", institution: "IFES Serra" },
+  { name: "Prof. Dr. Roberto Azevedo", role: "Coordenador de Minicursos", institution: "UFES" },
+  { name: "MSc. Camila Rodrigues", role: "Coordenadora de Pôsteres", institution: "IFES Serra" },
+  { name: "Prof. Dr. Fábio Nascimento", role: "Tesoureiro", institution: "IFES Serra" },
+  { name: "Profa. Ma. Renata Pimentel", role: "Secretária Geral", institution: "IFES Serra" },
+];
+
+---
+
+<section id="palestrantes" class="bg-gradient-to-b from-slate-50 to-blue-50/30">
+  <div class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+    <div class="mb-12">
+      <h2 class="text-slate-900 text-3xl font-bold mb-2">
+        Palestrantes
+      </h2>
+      <p class="text-slate-600">
+        Pesquisadores de diferentes instituições do país
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+      {speakers.map((speaker) => (
+        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <div class="relative h-67">
+            <img
+              src={speaker.imageRef}
+              alt={speaker.name}
+              class="w-full h-full object-cover object-center"
+            />
+            <span class="absolute top-2 right-2 px-2 py-1 bg-white text-slate-700 text-xs rounded font-medium">
+              {speaker.affil}
+            </span>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-blue-600 mb-1">{speaker.tag}</p>
+            <h3 class="text-slate-900 font-semibold mb-2">
+              {speaker.name}
+            </h3>
+            <div class="border-t border-slate-200 pt-2 mt-2">
+              <p class="text-slate-600 text-sm leading-snug">
+                {speaker.topic}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div>
+      <div class="mb-8">
+        <h3 class="text-slate-900 text-xl font-bold mb-1">
+          Organização
+        </h3>
+        <p class="text-slate-500 text-sm">Comitê organizador do evento</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {committeeMembers.map((member, i) => (
+          <div class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg">
+            <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <span class="text-white font-semibold text-xs">
+                {member.name.split(" ").slice(-1)[0][0]}
+                {member.name.split(" ").slice(-2, -1)[0]?.[0]}
+              </span>
+            </div>
+            <div>
+              <p class="text-slate-900 text-sm font-medium">{member.name}</p>
+              <p class="text-slate-600 text-xs">{member.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

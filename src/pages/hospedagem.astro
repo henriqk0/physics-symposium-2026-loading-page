@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const accommodations = [
+  {
+    name: "Hotel Jardins",
+    address: "Hotel Jardins, ES-010, 1307 - Jardim Limoeiro, Serra - ES, 29164-140",
+    distance: "6 km do IFES Serra",
+    phone: "(27) 99782-8769",
+    email: "reservas@statuselegancehotel.com.br",
+  },
+  {
+    name: "Go Inn Serra",
+    address: "Go Inn Serra - Av. Des. Mário da Silva Nunes, 738 - Jardim Limoeiro, Serra - ES, 29164-044",
+    distance: "7 km do IFES Serra",
+    phone: "(27) 3180-0223",
+    email: "reservas.tfse@ahi.com.br",
+  },
+  {
+    name: "Serra Lindo Hotel",
+    address: "Rua dos Uirapurus, 559, Morada de Laranjeiras Serra/ES ",
+    distance: "1.5 km do IFES Serra",
+    phone: "(27)3338-7538",
+    email: "reservas@serralindahotel.com.br",
+  },
+  {
+    name: "Ibis Vitória Aeroporto",
+    address: "Rod BR 101 - Km 2 s/2, Bairro Carapina, 29161-793 SERRA",
+    distance: "8 km do IFES Serra",
+    phone: "(27) 3041-4900",
+    email: "h5528-re@accor.com.br",
+  },
+];
+---
+
+<Layout title="Hospedagem – SRFES 2026">
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <h1 class="text-slate-900 text-3xl font-bold mb-3">Hospedagem</h1>
+        <p class="text-slate-600 max-w-2xl">
+          Sugestões de hotéis e pousadas próximos ao local do evento
+        </p>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-12">
+        <p class="text-sm text-slate-700">
+          <strong>Importante:</strong> As acomodações listadas são sugestões. O ECF/SBF não possui convênio oficial com nenhum estabelecimento. Recomendamos entrar em contato diretamente para verificar disponibilidade e valores.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 mb-12">
+        {accommodations.map((acc) => (
+          <div class="bg-white border border-slate-200 rounded-lg p-6">
+            <h3 class="text-slate-900 font-semibold mb-3">{acc.name}</h3>
+            
+            <div class="space-y-2 text-sm">
+              <div class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <p class="text-slate-900">{acc.address}</p>
+                  <p class="text-slate-500">{acc.distance}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948-.684l1.498-4.493a1 1 0 011.502-.684l1.498 4.493a1 1 0 00.948.684H17a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                </svg>
+                <a href={`tel:${acc.phone.replace(/\D/g, "")}`} class="text-blue-600 hover:underline">{acc.phone}</a>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href={`mailto:${acc.email}`} class="text-blue-600 hover:underline text-xs">{acc.email}</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
+        <h3 class="text-slate-900 font-semibold mb-4">Outras Opções</h3>
+        <p class="text-slate-600 text-sm mb-3">Você também pode buscar acomodações em plataformas como:</p>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="https://www.airbnb.com.br" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              • Airbnb - Apartamentos e casas na região
+            </a>
+          </li>
+          <li>
+            <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              • Booking.com - Hotéis e pousadas
+            </a>
+          </li>
+          <li>
+            <a href="https://www.trivago.com.br" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              • Trivago - Comparador de preços de hotéis
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,257 @@
+---
+import { Check, ArrowRight, CreditCard, QrCode, AlertCircle } from "@lucide/astro";
+
+const plans = [
+  {
+    id: "grad",
+    title: "Estudante de Graduação",
+    price: 30,
+    color: "cyan",
+    features: [
+      "Acesso a todas as palestras",
+      "Participação nos minicursos",
+      "Certificado de participação",
+      "Coffee breaks inclusos",
+      "Kit do evento",
+      "Sessão de pôsteres",
+    ],
+    cta: "Inscrever como Graduando",
+  },
+  {
+    id: "posgrad",
+    title: "Estudante de Pós-Graduação",
+    price: 50,
+    color: "purple",
+    featured: true,
+    features: [
+      "Acesso a todas as palestras",
+      "Participação nos minicursos",
+      "Certificado de participação",
+      "Coffee breaks inclusos",
+      "Kit do evento",
+      "Sessão de comunicações orais",
+      "Submissão de trabalho",
+    ],
+    cta: "Inscrever como Pós-Graduando",
+  },
+  {
+    id: "prof",
+    title: "Profissional / Professor",
+    price: 80,
+    color: "amber",
+    features: [
+      "Acesso a todas as palestras",
+      "Participação nos minicursos",
+      "Certificado de participação",
+      "Coffee breaks inclusos",
+      "Kit do evento",
+      "Sessão de comunicações orais",
+      "Submissão de trabalho",
+      "Jantar de confraternização",
+    ],
+    cta: "Inscrever como Profissional",
+  },
+];
+
+const colorMap: Record<string, { border: string; bg: string; text: string; btn: string; badge: string }> = {
+  cyan: {
+    border: "border-cyan-200",
+    bg: "bg-gradient-to-br from-cyan-50 to-blue-50",
+    text: "text-cyan-600",
+    btn: "bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 shadow-cyan-300/50",
+    badge: "bg-cyan-100 border-cyan-300 text-cyan-700",
+  },
+  purple: {
+    border: "border-purple-300",
+    bg: "bg-gradient-to-br from-purple-50 to-pink-50",
+    text: "text-purple-600",
+    btn: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-purple-300/50",
+    badge: "bg-purple-100 border-purple-300 text-purple-700",
+  },
+  amber: {
+    border: "border-amber-200",
+    bg: "bg-gradient-to-br from-amber-50 to-orange-50",
+    text: "text-amber-600",
+    btn: "bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 shadow-amber-300/50",
+    badge: "bg-amber-100 border-amber-300 text-amber-700",
+  },
+};
+---
+
+<section id="inscricao" class="bg-gradient-to-b from-slate-50 to-blue-50/30">
+  <div class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <div class="mb-10">
+      <h2 class="text-slate-900 text-3xl font-bold mb-2">
+        Inscrições
+      </h2>
+      <p class="text-slate-600">
+        Inscrições até <strong>10 de julho de 2026</strong> • Vagas limitadas
+      </p>
+    </div>
+
+    <div class="mb-10 max-w-4xl mx-auto">
+      <h3 class="text-slate-900 text-xl font-semibold mb-4">Valores por Lote de Inscrição</h3>
+
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white border-2 border-slate-200 rounded-xl shadow-md">
+          <thead>
+            <tr class="bg-gradient-to-r from-slate-100 to-slate-50">
+              <th class="p-4 text-left text-slate-700 font-semibold border-b-2 border-slate-200">
+                Categoria
+              </th>
+              <th class="p-4 text-center border-b-2 border-l border-slate-200">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span class="text-green-700 font-semibold">1º Lote</span>
+                </div>
+                <span class="text-slate-600 text-xs">Até 31/05/2026</span>
+              </th>
+              <th class="p-4 text-center border-b-2 border-l border-slate-200">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                  <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+                  <span class="text-amber-700 font-semibold">2º Lote</span>
+                </div>
+                <span class="text-slate-600 text-xs">01/06 a 30/06/2026</span>
+              </th>
+              <th class="p-4 text-center border-b-2 border-l border-slate-200">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                  <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                  <span class="text-red-700 font-semibold">3º Lote</span>
+                </div>
+                <span class="text-slate-600 text-xs">01/07 a 10/07/2026</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 text-slate-700 font-medium border-b border-slate-200">
+                Estudante de Graduação
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-green-700 font-bold text-lg">R$ 30</span>
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-amber-700 font-bold text-lg">R$ 36</span>
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-red-700 font-bold text-lg">R$ 42</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 text-slate-700 font-medium border-b border-slate-200">
+                Estudante de Pós-Graduação
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-green-700 font-bold text-lg">R$ 50</span>
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-amber-700 font-bold text-lg">R$ 60</span>
+              </td>
+              <td class="p-4 text-center border-b border-l border-slate-200">
+                <span class="text-red-700 font-bold text-lg">R$ 70</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="p-4 text-slate-700 font-medium">
+                Profissional / Professor
+              </td>
+              <td class="p-4 text-center border-l border-slate-200">
+                <span class="text-green-700 font-bold text-lg">R$ 80</span>
+              </td>
+              <td class="p-4 text-center border-l border-slate-200">
+                <span class="text-amber-700 font-bold text-lg">R$ 96</span>
+              </td>
+              <td class="p-4 text-center border-l border-slate-200">
+                <span class="text-red-700 font-bold text-lg">R$ 112</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-slate-500 text-xs mt-3 text-center">
+        Valores promocionais válidos conforme disponibilidade de vagas
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6 mb-14">
+      {plans.map((plan) => {
+        const c = colorMap[plan.color];
+        return (
+          <div
+            class={`relative flex flex-col p-6 rounded-2xl border-2 ${c.border} ${c.bg} ${
+              plan.featured ? "ring-2 ring-purple-400 scale-[1.02] shadow-xl" : "shadow-md"
+            } transition-all duration-200 hover:shadow-xl`}
+          >
+            {plan.featured && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class={`px-3 py-1 rounded-full text-xs font-semibold border-2 ${c.badge} shadow-md`}>
+                  Mais Popular
+                </span>
+              </div>
+            )}
+
+            <div class="mb-6">
+              <h3 class="text-slate-900 font-semibold text-base">{plan.title}</h3>
+            </div>
+
+            <ul class="space-y-2 flex-1 mb-6">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-slate-700">
+                  <Check class={`w-4 h-4 ${c.text} flex-shrink-0 mt-0.5`} />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/inscricoes"
+              class={`flex items-center justify-center gap-2 w-full py-3 rounded-lg ${c.btn} text-white text-sm font-medium transition-all duration-200 shadow-lg hover:-translate-y-0.5`}
+            >
+              <ArrowRight class="w-4 h-4" />
+              {plan.cta}
+            </a>
+          </div>
+        );
+      })}
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+      <div class="p-5 bg-white border-2 border-slate-200 rounded-xl shadow-md">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md">
+            <QrCode class="w-5 h-5 text-white" />
+          </div>
+          <h4 class="text-slate-900 font-medium">PIX</h4>
+        </div>
+        <p class="text-slate-600 text-sm">
+          Pagamento instantâneo via PIX. Chave disponível no link de pagamento após seleção da categoria.
+        </p>
+      </div>
+      <div class="p-5 bg-white border-2 border-slate-200 rounded-xl shadow-md">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md">
+            <CreditCard class="w-5 h-5 text-white" />
+          </div>
+          <h4 class="text-slate-900 font-medium">Cartão de Crédito</h4>
+        </div>
+        <p class="text-slate-600 text-sm">
+          Parcelamento em até 3x sem juros via PagSeguro, disponível no link de pagamento.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex items-start gap-3 p-4 bg-white border-2 border-blue-200 rounded-xl max-w-2xl mx-auto shadow-md">
+      <AlertCircle class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+      <div class="text-sm text-slate-700">
+        <p class="text-slate-900 font-medium mb-1">Informações Importantes</p>
+        <ul class="space-y-1 text-xs list-disc list-inside">
+          <li>Após o pagamento, envie o comprovante para <span class="text-blue-600 font-medium">ecfsbf2026@ifes.edu.br</span></li>
+          <li>Comprovante de matrícula obrigatório para estudantes</li>
+          <li>Dúvidas? Entre em contato via e-mail ou WhatsApp (27) 99999-0000</li>
+          <li>Vagas limitadas a 250 participantes no total</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
