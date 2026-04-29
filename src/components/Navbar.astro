@@ -14,20 +14,20 @@ const currentPath = Astro.url.pathname;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-sm">SRF</span>
+        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+          <span class="text-white font-bold text-sm italic">SBF</span>
         </div>
-        <span class="font-semibold text-foreground text-sm hidden sm:block">Simpósio Regional de Física</span>
+        <span class="font-semibold text-foreground text-sm hidden sm:block">V ECF/SBF</span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6">
+      <nav class="hidden md:flex items-center gap-3">
         {navLinks.map((link) => (
           <a
             href={link.href}
             class:list={[
-              "text-sm font-medium transition-colors",
+              "text-sm font-medium transition-colors px-3 py-2 rounded-full",
               currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
-                ? "text-blue-600"
+                ? "text-blue-600 bg-blue-50"
                 : "text-foreground/70 hover:text-foreground"
             ]}
           >
@@ -53,15 +53,15 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-background border-t border-border">
+  <div id="mobile-menu" class="hidden md:hidden bg-background border-t border-slate-200">
     <div class="px-4 py-4 space-y-3">
       {navLinks.map((link) => (
         <a
           href={link.href}
           class:list={[
-            "block text-sm font-medium py-2",
+            "block text-sm font-medium py-2 px-3 rounded-full mb-1",
             currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
-              ? "text-blue-600"
+              ? "text-blue-600 bg-blue-50"
               : "text-foreground/70"
           ]}
         >
