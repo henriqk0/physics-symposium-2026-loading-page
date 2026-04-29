@@ -1,6 +1,8 @@
 ---
 import { Check, ArrowRight, CreditCard, QrCode, AlertCircle } from "@lucide/astro";
 
+const base = import.meta.env.BASE_URL;
+
 const plans = [
   {
     id: "grad",
@@ -205,7 +207,7 @@ const colorMap: Record<string, { border: string; bg: string; text: string; btn: 
             </ul>
 
             <a
-              href="/inscricoes"
+              href={`${base}/inscricoes`}
               class={`flex items-center justify-center gap-2 w-full py-3 rounded-lg ${c.btn} text-white text-sm font-medium transition-all duration-200 shadow-lg hover:-translate-y-0.5`}
             >
               <ArrowRight class="w-4 h-4" />

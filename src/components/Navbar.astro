@@ -1,10 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
 const navLinks = [
-  { href: "/", label: "Início" },
-  { href: "/cronograma", label: "Cronograma" },
-  { href: "/palestrantes", label: "Palestrantes" },
-  { href: "/hospedagem", label: "Hospedagem" },
-  { href: "/inscricoes", label: "Inscrições" },
+  { href: `${base}/`, label: "Início" },
+  { href: `${base}/cronograma`, label: "Cronograma" },
+  { href: `${base}/palestrantes`, label: "Palestrantes" },
+  { href: `${base}/hospedagem`, label: "Hospedagem" },
+  { href: `${base}/inscricoes`, label: "Inscrições" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -13,7 +14,7 @@ const currentPath = Astro.url.pathname;
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2">
+      <a href={`${base}/`} class="flex items-center gap-2">
         <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
           <span class="text-white font-bold text-sm italic">SBF</span>
         </div>
@@ -38,7 +39,7 @@ const currentPath = Astro.url.pathname;
 
       <div class="hidden md:flex items-center gap-3">
         <a
-          href="/inscricoes"
+          href={`${base}/inscricoes`}
           class="bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-blue-700 transition-colors"
         >
           Inscreva-se
@@ -69,7 +70,7 @@ const currentPath = Astro.url.pathname;
         </a>
       ))}
       <a
-        href="/inscricoes"
+        href={`${base}/inscricoes`}
         class="block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full text-center hover:bg-blue-700 transition-colors mt-4"
       >
         Inscreva-se
