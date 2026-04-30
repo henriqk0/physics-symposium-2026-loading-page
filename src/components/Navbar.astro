@@ -1,6 +1,19 @@
 ---
+import { ChevronDown } from "@lucide/astro";
+
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Edition {
+  href: string;
+  label: string;
+}
+
 const base = import.meta.env.BASE_URL;
-const navLinks = [
+
+const navLinks: NavLink[] = [
   { href: `${base}/`, label: "Início" },
   { href: `${base}/cronograma`, label: "Cronograma" },
   { href: `${base}/palestrantes`, label: "Palestrantes" },
@@ -8,36 +21,97 @@ const navLinks = [
   { href: `${base}/inscricoes`, label: "Inscrições" },
 ];
 
+const previousEditions: Edition[] = [
+  { href: "https://sites.google.com/view/ecf-sbf", label: "ECF/SBF - 2025" },
+  {
+    href: "https://sites.google.com/view/ecf-sbf/edi%C3%A7%C3%B5es-anteriores/ecfsbf-2024?authuser=0",
+    label: "ECF/SBF - 2024",
+  },
+  {
+    href: "https://sites.google.com/view/ecf-sbf/edi%C3%A7%C3%B5es-anteriores/ecfsbf-2023?authuser=0",
+    label: "ECF/SBF - 2023",
+  },
+];
+
 const currentPath = Astro.url.pathname;
+
+// Shared class helpers
+const activeLinkClass = "text-blue-600 bg-blue-50";
+const inactiveLinkClass = "text-foreground/70 hover:text-foreground";
 ---
 
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
       <a href={`${base}/`} class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+        <div
+          class="w-8 h-8 bg-black rounded-full flex items-center justify-center"
+        >
           <span class="text-white font-bold text-sm italic">SBF</span>
         </div>
-        <span class="font-semibold text-foreground text-sm block">V ECF/SBF</span>
+        <span class="font-semibold text-foreground text-sm">V ECF/SBF</span>
       </a>
 
+      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-3">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              "text-sm font-medium transition-colors px-3 py-2 rounded-full",
-              currentPath === link.href
-                ? "text-blue-600 bg-blue-50"
-                : "text-foreground/70 hover:text-foreground"
-            ]}
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "text-sm font-medium transition-colors px-3 py-2 rounded-full",
+                currentPath === link.href ? activeLinkClass : inactiveLinkClass,
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+
+        <!-- Desktop: Editions dropdown (hover/click floating menu) -->
+        <div
+          class="dropdown relative text-sm font-medium px-3 py-2 rounded-full"
+        >
+          <button
+            class="trigger flex items-center gap-1 text-foreground/70 hover:text-foreground transition-colors"
           >
-            {link.label}
-          </a>
-        ))}
+            Edições Anteriores
+            <span class="icon transition-transform duration-200">
+              <ChevronDown size={15} />
+            </span>
+          </button>
+
+          <div
+            class="menu-latest absolute left-0 top-full mt-2 w-max
+              opacity-0 scale-95 pointer-events-none
+              transition-all duration-200 origin-top"
+          >
+            <div
+              class="mt-2 rounded-lg bg-white/95 border border-slate-200 shadow-lg p-2 flex flex-col gap-1"
+            >
+              {
+                previousEditions.map((edition) => (
+                  <a
+                    href={edition.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-2 py-1 rounded-lg text-foreground/70 hover:text-foreground transition-colors"
+                  >
+                    {edition.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
       </nav>
 
-      <div class="hidden md:flex items-center gap-3">
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center">
         <a
           href={`${base}/inscricoes`}
           class="bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-blue-700 transition-colors"
@@ -46,47 +120,129 @@ const currentPath = Astro.url.pathname;
         </a>
       </div>
 
-      <button id="mobile-menu-btn" class="md:hidden p-2 relative w-8 h-8 flex items-center justify-center" aria-label="Menu">
-        <svg id="menu-icon-open" class="w-6 h-6 absolute transition-all duration-300 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <!-- Mobile menu toggle -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden relative w-8 h-8 flex items-center justify-center"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          id="menu-icon-open"
+          class="w-6 h-6 absolute transition-all duration-300 ease-out"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
-        <svg id="menu-icon-close" class="w-6 h-6 absolute transition-all duration-300 ease-out rotate-[-90deg] opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg
+          id="menu-icon-close"
+          class="w-6 h-6 absolute transition-all duration-300 ease-out -rotate-90 opacity-0"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0">
-    <div class="px-4 py-4 space-y-3">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class:list={[
-            "block text-sm font-medium py-2 px-3 rounded-full mb-1",
-            currentPath === link.href
-              ? "text-blue-600 bg-blue-50"
-              : "text-foreground/70"
-          ]}
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0"
+    role="navigation"
+    aria-label="Mobile navigation"
+  >
+    <div class="px-4 py-4 space-y-1">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "block text-sm font-medium py-2 px-3 rounded-full",
+              currentPath === link.href
+                ? activeLinkClass
+                : "text-foreground/70",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+
+      <!-- Mobile: Editions accordion -->
+      <div id="mobile-editions-accordion" class="text-sm font-medium">
+        <button
+          id="mobile-editions-trigger"
+          class="w-full flex items-center justify-between py-2 px-3 text-foreground/70 rounded-full"
+          aria-expanded="false"
+          aria-controls="mobile-editions-panel"
         >
-          {link.label}
+          Edições Anteriores
+          <span
+            id="mobile-editions-icon"
+            class="transition-transform duration-200"
+          >
+            <ChevronDown size={15} />
+          </span>
+        </button>
+
+        <div
+          id="mobile-editions-panel"
+          class="overflow-hidden max-h-0 transition-all duration-300 ease-out"
+          role="region"
+        >
+          <div class="pl-3 pt-1 pb-2 flex flex-col gap-1">
+            {
+              previousEditions.map((edition) => (
+                <a
+                  href={edition.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block text-sm py-1.5 px-3 rounded-lg text-foreground/60 hover:text-foreground transition-colors"
+                >
+                  {edition.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3">
+        <a
+          href={`${base}/inscricoes`}
+          class="block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full text-center hover:bg-blue-700 transition-colors"
+        >
+          Inscreva-se
         </a>
-      ))}
-      <a
-        href={`${base}/inscricoes`}
-        class="block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full text-center hover:bg-blue-700 transition-colors mt-4"
-      >
-        Inscreva-se
-      </a>
+      </div>
     </div>
   </div>
 </header>
 
 <style>
+  /* Mobile menu open state */
   #mobile-menu.open {
-    max-height: 400px;
+    max-height: 480px;
     opacity: 1;
   }
+
+  /* Hamburger icon transitions */
   #menu-icon-close.open {
     opacity: 1;
     rotate: 0deg;
@@ -95,37 +251,93 @@ const currentPath = Astro.url.pathname;
     opacity: 0;
     rotate: 90deg;
   }
+
+  /* Desktop dropdown open state */
+  .dropdown.open .menu-latest {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+  .dropdown.open .icon {
+    transform: rotate(180deg);
+  }
+
+  /* Mobile accordion open state */
+  #mobile-editions-panel.open {
+    max-height: 200px;
+  }
+  #mobile-editions-icon.open {
+    transform: rotate(180deg);
+  }
 </style>
 
 <script>
-  const navbar = document.getElementById("navbar");
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuIconOpen = document.getElementById("menu-icon-open");
-  const menuIconClose = document.getElementById("menu-icon-close");
+  // ── Navbar scroll behaviour ──────────────────────────────────────────────
+  const navbar = document.getElementById("navbar")!;
 
-  window.addEventListener("scroll", () => {
-    if (navbar) {
-      if (window.scrollY > 20) {
-        navbar.classList.add("bg-background/80", "backdrop-blur-lg", "shadow-sm");
-        navbar.classList.remove("bg-transparent");
-      } else {
-        navbar.classList.remove("bg-background/80", "backdrop-blur-lg", "shadow-sm");
-        navbar.classList.add("bg-transparent");
-      }
+  const applyScrollStyle = (scrolled: boolean) => {
+    navbar.classList.toggle("bg-background/80", scrolled);
+    navbar.classList.toggle("backdrop-blur-lg", scrolled);
+    navbar.classList.toggle("shadow-sm", scrolled);
+    navbar.classList.toggle("bg-transparent", !scrolled);
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => applyScrollStyle(window.scrollY > 20),
+    { passive: true },
+  );
+
+  // ── Mobile menu toggle ───────────────────────────────────────────────────
+  const mobileMenuBtn = document.getElementById(
+    "mobile-menu-btn",
+  ) as HTMLButtonElement;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const menuIconOpen = document.getElementById("menu-icon-open")!;
+  const menuIconClose = document.getElementById("menu-icon-close")!;
+
+  mobileMenuBtn.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+
+    menuIconOpen.classList.toggle("open", isOpen);
+    menuIconClose.classList.toggle("open", isOpen);
+    mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+
+    // Keep navbar styled while menu is open
+    if (isOpen) {
+      applyScrollStyle(true);
+    } else if (window.scrollY <= 20) {
+      applyScrollStyle(false);
     }
   });
 
-  mobileMenuBtn?.addEventListener("click", () => {
-    const isOpen = mobileMenu?.classList.contains("open");
-    mobileMenu?.classList.toggle("open");
-    menuIconOpen?.classList.toggle("open");
-    menuIconClose?.classList.toggle("open");
+  // ── Desktop dropdown ─────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLElement>(".dropdown").forEach((dropdown) => {
+    const trigger = dropdown.querySelector<HTMLButtonElement>(".trigger")!;
 
-    if (!isOpen) {
-      navbar?.classList.add("bg-background/80", "backdrop-blur-lg", "shadow-sm");
-    } else if (window.scrollY <= 20) {
-      navbar?.classList.remove("bg-background/80", "backdrop-blur-lg", "shadow-sm");
-    }
+    trigger.addEventListener("click", () => {
+      dropdown.classList.toggle("open");
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target as Node)) {
+        dropdown.classList.remove("open");
+      }
+    });
+  });
+
+  // ── Mobile editions accordion ────────────────────────────────────────────
+  const editionsTrigger = document.getElementById(
+    "mobile-editions-trigger",
+  ) as HTMLButtonElement;
+  const editionsPanel = document.getElementById("mobile-editions-panel")!;
+  const editionsIcon = document.getElementById("mobile-editions-icon")!;
+
+  editionsTrigger.addEventListener("click", () => {
+    const isOpen = editionsPanel.classList.toggle("open");
+
+    editionsIcon.classList.toggle("open", isOpen);
+    editionsTrigger.setAttribute("aria-expanded", String(isOpen));
   });
 </script>
